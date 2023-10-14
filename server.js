@@ -9,7 +9,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 //this allows for connect to cluster 0 in our database and then read and write from it
 //you might not be able to do it from home until I approve everyone to read and write
-const dbURL = 'mongodb+srv://developer:49ouuTHRknntUzFq@cluster0.4ztfnxn.mongodb.net/?retryWrites=true&w=majority'; //dont share this plz
+
+const dbURL = 'mongodb+srv://developer:<password>@cluster0.4ztfnxn.mongodb.net/?retryWrites=true&w=majority'; //dont share this plz
 mongoose.connect(dbURL);
 
 //sending index.html to the web broswer
