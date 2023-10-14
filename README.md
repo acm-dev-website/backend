@@ -11,6 +11,3 @@ const variables are captilized
 Use semicolons after lines
 
 arrow functions must have ()
-    ()=>{
-
-    }
