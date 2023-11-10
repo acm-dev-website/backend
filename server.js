@@ -7,10 +7,14 @@ const {APIKey, PORT} = require("./Key.json");
 app.use(bodyParser.urlencoded({extended:true}));
 
 const dbURL = `mongodb+srv://developer:${APIKey}@cluster0.4ztfnxn.mongodb.net/?retryWrites=true&w=majority`;
-mongoose.connect(dbURL);;
+mongoose.connect(dbURL);
 
 app.get('/',(req,res)=>{
-    res.sendFile(__dirname+"/index.html");
+    res.sendFile(__dirname+"login.html");
+})
+
+app.get('/admin',(req,res)=>{
+    res.render('admin',{})
 })
 
 app.listen(PORT, ()=>{
