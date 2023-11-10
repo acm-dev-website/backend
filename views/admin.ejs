@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
-    <head>Admin</head>
+    <head>
+      <title>Admin</title>
+      <!-- <link rel="stylesheet" href="css/meme.css"> -->
+    </head>
     <body>
         <!--POST-->
         <main>
+          <h1>Admin</h1>
           <div>
-            <form action="/admin" method="post">
-                <input type="text" name="name" placeholder="username">
-                <input type="text" name="date" placeholder="date">
-                <textarea placeholder="description"></textarea>
+            <form action="/admin" method="post" class="inputForm">
+                <input type="text" name="name" placeholder="Event Name">
+                <input type="text" name="date" placeholder="Event Date">
+                <textarea name="description" placeholder="Description"></textarea>
+                <input type="submit" value="Submit">
             </form>
           </div>
         </main>
