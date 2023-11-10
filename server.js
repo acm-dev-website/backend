@@ -15,14 +15,19 @@ app.get('/',(req,res)=>{
 })
 
 app.get('/admin',(req,res)=>{
-    jsonRequest = JSON.stringify(req.query);
-    console.log(jsonRequest);
-    if(jsonRequest.length === 0 || jsonRequest === '{}')
-        console.log("Not serach");
-    else
-        console.log("Search DB");
+    res.render("admin",{});
+})
 
-    res.render('admin',{})
+app.get('/admin/search',(req,res)=>{
+    let request = req.query.request;
+
+    if(!request || request===""){
+        console.log("Not searching db");
+    }else{
+        console.log("Searching db");
+    }
+
+    res.render("admin",{});
 })
 
 app.listen(PORT, ()=>{
