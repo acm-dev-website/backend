@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>Admin</head>
+    <head>Admin
+        
+        <div>
+            <form id="form" action="/admin" method="get" style="display: inline;"> 
+                <input type="search" id="query" name="q" placeholder="Search...">
+                <button>Submit</button>     
+            </form> 
+            <select name="actionEvent" id="actionEvent"> 
+                <option value="editEvent">Edit</option> 
+                <option value="deleteEvent">Delete</option> 
+            </select>
+        </div>
+  
+
+    </head>
     <body>
         <!--POST-->
         <!--GET-->
