@@ -7,7 +7,6 @@ const {APIKey, PORT} = require("./Key.json");
 const secureCookie = require('./secureCookie.js');
 
 app.set('view engine','ejs');
-app.use(bodyParser.urlencoded({extended:true}));
 app.use(cookieParser());
 
 const dbURL = `mongodb+srv://developer:${APIKey}@cluster0.4ztfnxn.mongodb.net/?retryWrites=true&w=majority`;
@@ -27,7 +26,7 @@ const loginPage = `
     </body>
 `
 
-app.get('/',async (req,res)=>{
+app.get('/', async (req,res)=>{
     // Check and see if auth cookie exists
     if(!req.cookies.auth) return res.status(401).send(loginPage);
     // Decrypt cookie
@@ -36,7 +35,7 @@ app.get('/',async (req,res)=>{
     if(auth !== "session") return res.status(401).send(loginPage);
     return res.sendFile(__dirname+"/index.html");
 })
-app.post('/', async (req,res)=>{
+app.post('/', bodyParser.urlencoded({extended:true}), async (req,res)=>{
     // Check if password is correct
     if(req.body.password !== "password") return res.status(401).send(loginPage);
     // Encrypt cookie
