@@ -8,16 +8,21 @@
         <!--POST-->
         <main>
           <h1>Admin</h1>
+          <h2>Post</h2>
           <div>
             <form action="/admin" method="post" class="inputForm">
-                <input type="text" name="name" placeholder="Event Name">
-                <input type="text" name="date" placeholder="Event Date">
-                <textarea name="description" placeholder="Description"></textarea>
+                <input type="text" name="name" placeholder="Event Name"><br>
+                <input type="text" name="date" placeholder="Event Date"><br>
+                <textarea name="description" placeholder="Description"></textarea><br>
                 <input type="submit" value="Submit">
             </form>
           </div>
         </main>
+        <br>
+        <br>
+
         <!--GET-->
+        <h2>Search</h2>
         <div>
             <form id="form" action="/admin/search" method="get" style="display: inline;"> 
                 <input type="search" id="query" name="request" placeholder="Search...">

@@ -8,13 +8,13 @@ app.set('view engine','ejs');
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
 
-const event_schema = {
+const eventSchema = {
   name: String,
   date: Date,
   description: String
 }
 
-const event = mongoose.model('events', event_schema);
+const event = mongoose.model('events', eventSchema);
 
 const dbURL = `mongodb+srv://developer:${APIKey}@cluster0.4ztfnxn.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(dbURL);
