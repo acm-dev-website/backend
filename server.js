@@ -1,3 +1,4 @@
+// Imports
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -19,6 +20,11 @@ const event = mongoose.model('events', eventSchema);
 const dbURL = `mongodb+srv://developer:${APIKey}@cluster0.4ztfnxn.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(dbURL);
 
+// Setting up html parsing and rendering
+app.set('view engine','ejs');
+app.use(bodyParser.urlencoded({extended:true}));
+
+// Webpage redirects
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+"/login.html");
 })
