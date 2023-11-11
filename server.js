@@ -15,14 +15,8 @@ const eventSchema = {
   description: String
 }
 
-const event = mongoose.model('events', eventSchema);
-
 const dbURL = `mongodb+srv://developer:${APIKey}@cluster0.4ztfnxn.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(dbURL);
-
-// Setting up html parsing and rendering
-app.set('view engine','ejs');
-app.use(bodyParser.urlencoded({extended:true}));
 
 // Webpage redirects
 app.get('/',(req,res)=>{
@@ -46,6 +40,7 @@ app.get('/admin/search',(req,res)=>{
     res.render('admin',{});
 })
 
+
 app.post('/admin/', async (req, res) => {
   const newEvent = new event({
     name: req.body.name,
@@ -60,6 +55,7 @@ app.post('/admin/', async (req, res) => {
   }
   res.redirect('/admin');
 });
+
 
 app.listen(PORT, ()=>{
     console.log("Server listening on port "+PORT);
