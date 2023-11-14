@@ -27,35 +27,10 @@ app.get('/',(req,res)=>{
     res.sendFile(__dirname+"/login.html");
 })
 
-app.get('/admin',(req,res)=>{
-    res.render('admin', {event: {name: ""}});
-})
 
-
-app.get('/admin/search', async (req, res) => {
-    let searchText = req.query.eventSearch;
-    console.log(`The search: ${searchText}`);
-
-    // If user enters blank
-    if(!searchText || searchText===""){
-        res.send("error");
-        return;
-    }
-
-    // If users searching string
-    const events = await Event.find({ name: searchText });
-    console.log(`Mongo found ${events}`);
-
-    // If the event is not found
-    if (events.length === 0) {
-        emptyEvent = { name: "Event not found :(" };
-        res.render("admin", { event: emptyEvent });
-        return;
-    }
-
-    // If the event is found then it just renders
-    
-    res.render("admin", {event: events[0]});
+app.get('/admin', async (req,res)=>{
+    const events = await Event.find();
+    res.render('admin', {events: events});
 })
 
 
