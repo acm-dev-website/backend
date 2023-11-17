@@ -27,29 +27,6 @@ const loginPage = `
 `
 function cookieAuthCheck(req, res,next) {
     // Check and see if auth cookie exists
-    if(!req.cookies.auth) return res.redirect('/');
-    try {
-        // Decrypt cookie
-        const TSCookie = cookieCrypt.decrypt(req.cookies.auth);
-        const TS = new Date(TSCookie);
-        // check if the TSCookie is expired (24 hours)
-        if(TS.getTime() + 1000*60*60*24 < new Date().getTime()) {
-            // If expired, delete cookie and send login page
-            res.clearCookie('auth');
-            return res.redirect('/');
-        }
-        // Update cookie timestamp
-        res.cookie('auth',cookieCrypt.encrypt((new Date()).toString()),{httpOnly:true});
-        next();
-    } catch(ex) {
-        // If cookie is invalid, delete cookie and send login page
-        res.clearCookie('auth');
-        return res.redirect('/');
-    }
-}
-
-app.get('/', async (req,res)=>{
-    // Check and see if auth cookie exists
     if(!req.cookies.auth) return res.status(401).send(loginPage);
     try {
         // Decrypt cookie
@@ -63,12 +40,17 @@ app.get('/', async (req,res)=>{
         }
         // Update cookie timestamp
         res.cookie('auth',cookieCrypt.encrypt((new Date()).toString()),{httpOnly:true});
-        return res.sendFile(__dirname+"/index.html");
+        next();
     } catch(ex) {
         // If cookie is invalid, delete cookie and send login page
         res.clearCookie('auth');
         return res.status(401).send(loginPage);
     }
+}
+
+app.get('/', cookieAuthCheck, async (req,res)=>{
+    // Check and see if auth cookie exists
+    return res.sendFile(__dirname+"/index.html");
 })
 app.post('/', bodyParser.urlencoded({extended:true}), async (req,res)=>{
     // Check if password is correct
