@@ -22,20 +22,15 @@ const Event = mongoose.model('events', eventSchema);
 const dbURL = `mongodb+srv://developer:${APIKey}@cluster0.4ztfnxn.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(dbURL);
 
-// Webpage redirects
-// app.get('/',(req,res)=>{
-//     res.sendFile(__dirname+"/login.html");
-// })
-
-// app.get('/admin',(req,res)=>{
-//     res.render('admin',{});
-// })
-
-app.get('/', async (req, res) => {
-  res.sendFile(__dirname+"/index.html");
+//Webpage redirects
+app.get('/admin',(req,res)=>{
+  res.render('admin',{});
 })
 
-// Using this to fetch all the data from
+app.get('/', async (req,res)=>{
+    res.sendFile(__dirname+"/login.html");
+})
+
 app.get("/raw/events", async (req, res) => {
 
   const events = await Event.find();
