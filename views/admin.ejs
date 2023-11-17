@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="./css/styles.css">
+      <script src="./script.js" defer></script>
       <title>Admin</title>
       <!-- <link rel="stylesheet" href="css/meme.css"> -->
     </head>
@@ -22,16 +26,37 @@
         <br>
 
         <!--GET-->
-        <h2>Search</h2>
-        <div>
-            <form id="form" action="/admin/search" method="get" style="display: inline;"> 
-                <input type="search" id="query" name="eventSearch" placeholder="Search...">
-                <button>Submit</button>     
-            </form> 
-            <select name="actionEvent" id="actionEvent"> 
-                <option value="editEvent">Edit</option> 
-                <option value="deleteEvent">Delete</option> 
-            </select>
+        <div class="search-wrapper">
+          <label for="search">Search Events</label>
+          <input type="search" id="search">
+          <div class="event-cards"></div>
+          <template event-card-template>
+             <div class="card">
+                <div class="header" data-header></div>
+                <div class="body">
+                   <p class="description" data-description></p>
+                   <p class="date" data-date></p>
+                   <button class="btn edit-button" data-button-type="edit" onclick="openEditModal()">Edit</button>
+                   <button class="btn delete-button" data-button-type="delete" onclick="openDeleteModal()">Delete</button>
+                </div>
+             </div>
+          </template>
+    
+       </div>
+ 
+       <div id="editModal" class="modal">
+          <div class="modal-content">
+            <span class="close" id="editClose">&times;</span>
+            <p>Edit modal!</p>
+          </div>
         </div>
+ 
+        <div id="deleteModal" class="modal">
+          <script>
+          </script>
+          <div class="modal-content">
+            <span class="close" id="deleteClose">&times;</span>
+            <p>Delete modal!</p>
+          </div>
     </body>
 </html>

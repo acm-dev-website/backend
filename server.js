@@ -25,17 +25,28 @@ app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 
 // Webpage redirects
-app.get('/',(req,res)=>{
-    res.sendFile(__dirname+"/login.html");
+// app.get('/',(req,res)=>{
+//     res.sendFile(__dirname+"/login.html");
+// })
+
+// app.get('/admin',(req,res)=>{
+//     res.render('admin',{});
+// })
+
+app.get('/', async (req, res) => {
+  res.sendFile(__dirname+"/index.html");
 })
 
-app.get('/admin',(req,res)=>{
-    res.render('admin',{});
+// Using this to fetch all the data from
+app.get("/raw/events", async (req, res) => {
+
+  const events = await Event.find();
+  res.json(events);
 })
 
 
 app.get('/admin/search',(req,res)=>{
-    let request = req.query.request;
+    let request = req.query.eventSearch;
 
     if(!request || request===""){
         console.log("Not searching db");
@@ -65,3 +76,4 @@ app.listen(PORT, ()=>{
     console.log("Server listening on port "+PORT);
     console.log(`http://localhost:${PORT}`)
 })
+
