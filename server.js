@@ -39,14 +39,14 @@ app.get('/', async (req,res)=>{
         return res.status(401).send(loginPage);
     }
     // Update cookie timestamp
-    res.cookie('auth',cookieCrypt.encrypt(new Date()),{httpOnly:true});
+    res.cookie('auth',cookieCrypt.encrypt((new Date()).toString()),{httpOnly:true});
     return res.sendFile(__dirname+"/index.html");
 })
 app.post('/', bodyParser.urlencoded({extended:true}), async (req,res)=>{
     // Check if password is correct
     if(req.body.password !== "password") return res.status(401).send(loginPage);
     // Encrypt cookie
-    const auth = cookieCrypt.encrypt(new Date());
+    const auth = cookieCrypt.encrypt((new Date()).toString());
     // Set cookie
     res.cookie('auth',auth,{httpOnly:true});
     return res.sendFile(__dirname+"/index.html");
