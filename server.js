@@ -3,8 +3,11 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser')
-const {APIKey, PORT} = require("./Key.json");
 const secureCookie = require('./secureCookie.js');
+const fs = require("fs");
+
+/* Yeah sorry fam, I'm gonna be using env injector tool to manage the API keys, but I'll keep the .json for team members to use */
+let {APIKey, PORT} = fs.existsSync("./Key.json") ? require("./Key.json") : {APIKey:process.env.MONGOPASS, PORT:process.env.PORT};
 
 app.set('view engine','ejs');
 app.use(cookieParser());
@@ -12,22 +15,10 @@ app.use(cookieParser());
 const dbURL = `mongodb+srv://developer:${APIKey}@cluster0.4ztfnxn.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(dbURL);
 const cookieCrypt = new secureCookie(APIKey);
-const loginPage = `
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Login</title>
-    </head>
-    <body>
-        <form action="/" method="POST">
-            <input type="password" name="password" placeholder="Password">
-            <input type="submit" value="Login">
-        </form>
-    </body>
-`
+
 function cookieAuthCheck(req, res,next) {
     // Check and see if auth cookie exists
-    if(!req.cookies.auth) return res.status(401).send(loginPage);
+    if(!req.cookies.auth) return res.status(401).sendFile(__dirname+"/login.html");
     try {
         // Decrypt cookie
         const TSCookie = cookieCrypt.decrypt(req.cookies.auth);
@@ -36,7 +27,7 @@ function cookieAuthCheck(req, res,next) {
         if(TS.getTime() + 1000*60*60*24 < new Date().getTime()) {
             // If expired, delete cookie and send login page
             res.clearCookie('auth');
-            return res.status(401).send(loginPage);
+            return res.status(401).sendFile(__dirname+"/login.html");
         }
         // Update cookie timestamp
         res.cookie('auth',cookieCrypt.encrypt((new Date()).toString()),{httpOnly:true});
@@ -44,7 +35,7 @@ function cookieAuthCheck(req, res,next) {
     } catch(ex) {
         // If cookie is invalid, delete cookie and send login page
         res.clearCookie('auth');
-        return res.status(401).send(loginPage);
+        return res.status(401).sendFile(__dirname+"/login.html");
     }
 }
 
@@ -54,7 +45,7 @@ app.get('/', cookieAuthCheck, async (req,res)=>{
 })
 app.post('/', bodyParser.urlencoded({extended:true}), async (req,res)=>{
     // Check if password is correct
-    if(req.body.password !== "password") return res.status(401).send(loginPage);
+    if(req.body.password !== "password") return res.status(401).sendFile(__dirname+"/login.html");
     // Encrypt cookie
     const auth = cookieCrypt.encrypt((new Date()).toString());
     // Set cookie
