@@ -33,7 +33,7 @@ function cookieAuthCheck(req, res,next) {
         const TSCookie = cookieCrypt.decrypt(req.cookies.auth);
         const TS = new Date(TSCookie);
         // check if the TSCookie is expired (24 hours)
-        if(TS.getTime() + 1000*60*60*24 < new Date().getTime()) {
+        if(TS.getTime() + 1000*60*60 < new Date().getTime()) {
             // If expired, delete cookie and send login page
             res.clearCookie('auth');
             return res.status(401).sendFile(__dirname+"/login.html");
