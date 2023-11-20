@@ -4,82 +4,81 @@ const searchInput = document.querySelector("#search");
 
 let events = [];
 
-fetch("./raw/events")
+fetch("/raw/events/all")
   .then((res) => res.json())
   .then((data) => {
     events = data.map(event => {
-        // Getting card template and datafield pointers
+        // Getting html divs where the text needs to go
         const card = eventCardTemplate.content.cloneNode(true).children[0];
-        const header = card.querySelector("[data-header]");
-        const description = card.querySelector("[data-description]");
-        const date = card.querySelector("[data-date]");
-        const id = card.querySelector("[data-id]");
-        const eventId = event._id;
+        const headerDiv = card.querySelector("[data-header]");
+        const descriptionDiv = card.querySelector("[data-description]");
+        const dateDiv = card.querySelector("[data-date]");
+        // Getting html divs for the buttons
+        const editButton = card.querySelector("[edit-button]");
+        const deleteButton = card.querySelector("[delete-button");
 
-        // Filling the text from the json
-        header.textContent = event.name;
-        description.textContent = event.description;
-        date.textContent = new Date(event.date).toLocaleDateString('en-us');
+        // Putting text into cards
+        headerDiv.textContent = event.name;
+        descriptionDiv.textContent = event.description;
+        dateDiv.textContent = new Date(event.date).toLocaleDateString('en-us');
 
-        // Adding the cards to the div for holding cards
+        // Initilizing function calls for edit and delete buttons
+        editButton.setAttribute("onclick", `openEditModal("${event._id}")`);
+        deleteButton.setAttribute("onclick", `openDeleteModal("${event._id}")`);
+
+        // Adding the new card to the html page
         eventCardsContainer.append(card);
         return {
-            name: event.name,
-            description: event.description,
-            date: event.date,
-            eventId : eventId,
-            element: card,
-        }
-    });
+          name: event.name,
+          description: event.description,
+          element: card,
+          eventMongoID: event._id,
+        };
+      });
   });
 
 // Event for whenever changes whats in the search bar
 searchInput.addEventListener("input", (e) => {
   const value = e.target.value.toLowerCase();
-    events.forEach(event => {
-      const isHidden = !(event.name.toLowerCase().includes(value)
-      || event.description.toLowerCase().includes(value));
-      event.element.classList.toggle("hide", isHidden);
+  events.forEach(event => {
+    const isHidden = !(event.name.toLowerCase().includes(value)
+    || event.description.toLowerCase().includes(value));
+    event.element.classList.toggle("hide", isHidden);
   });
 })
 
+
+/* MODAL STUFFS */
+
 // Get the modals
-var modal = document.getElementById("editModal");
-var deleteModal = document.getElementById("deleteModal");
+const modal = document.getElementById("editModal");
+const deleteModal = document.getElementById("deleteModal");
     
-// Get all the buttons that open the modals
-var editBtns = document.querySelectorAll(".btn.edit-button");
-var deleteBtns = document.querySelectorAll("[data-button-type='delete']");
-  
 // Set up span elements for edit and delete modals
-var editSpan = document.getElementById("editClose");
-var deleteSpan = document.getElementById("deleteClose");
+const editSpan = document.getElementById("editClose");
+const deleteSpan = document.getElementById("deleteClose");
   
 // Function to open the modals
-function openEditModal() {
+function openEditModal(mongoID) {
   console.log("Edit Button clicked!");
   editModal.style.display = "block";
+  console.log(mongoID)
 }
-function openDeleteModal() {
+function openDeleteModal(mongoID) {
   console.log("Delete button clicked!");
   deleteModal.style.display = "block";
+  console.log(mongoID);
+  // const something = await fetch(`raw/events/${mongoID}`);  <-- Now you just have to figure out how to do the fetch request
+  // But It wont be exactly what I put there, that was just a guess
 }
       
-// Function to close the modals
+// Functions to close the modals
 function closeEditModal() {
   modal.style.display = "none";
 }
 function closeDeleteModal() {
-  deleteModal.style.display = "none";
+  deleteModal.style.display = "none";  
 }
-  
-// Attach click event handlers to all edit and delete buttons
-editBtns.forEach(function (editBtn) {
-  editBtn.onclick = openEditModal;
-});
-deleteBtns.forEach(function (deleteBtn) {
-  deleteBtn.onclick = openDeleteModal;
-});
   
 // When the user clicks on x button, close the modal
 editSpan.onclick = closeEditModal;

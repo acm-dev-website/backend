@@ -31,7 +31,7 @@ app.get('/', async (req,res)=>{
     res.sendFile(__dirname+"/login.html");
 })
 
-app.get("/raw/events", async (req, res) => {
+app.get("/raw/events/all", async (req, res) => {
 
   const events = await Event.find();
   res.json(events);

@@ -7,8 +7,6 @@
       <script src="./script.js" defer></script>
       <title>Admin</title>
       <!-- <link rel="stylesheet" href="css/meme.css"> -->
-      <link rel="stylesheet" href="css/style.css">
-      <script src="./scripts/script.js" defer></script>
    </head>
    <body>
       <!--POST-->
@@ -38,12 +36,11 @@
                 <div class="body">
                    <p class="description" data-description></p>
                    <p class="date" data-date></p>
-                   <button class="btn edit-button" data-button-type="edit" onclick="openEditModal()">Edit</button>
-                   <button class="btn delete-button" data-button-type="delete" onclick="openDeleteModal()">Delete</button>
+                   <button class="btn edit-button" edit-button>Edit</button>
+                   <button class="btn delete-button" delete-button>Delete</button>
                 </div>
              </div>
-          </template>
-    
+          </template>    
        </div>
  
        <div id="editModal" class="modal">
