@@ -1,0 +1,25 @@
+<!-- We ballin and inline everything because this is a prototype, but will also be used in production w(ﾟДﾟ)w -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="css/loginStyle.css">
+    </head>
+    <body>
+        <div class="centerContainer">
+            <div class="box">
+                <h2>ACM Web Admin Authentication</h2>
+                <form id="authform" action="/" method="POST">
+                    <input id="passInput" type="password" name="password" placeholder="Password">
+                    <a class="btn bluebtn" href="#" id="loginBtn">Login</a>
+                </form>
+            </div>
+        </div>
+        <script>
+            const onSubmit = (e) => document.getElementById("authform").submit();
+            document.getElementById("loginBtn").onclick = onSubmit;
+            document.getElementById("passInput").onkeydown = (e) => e.keyCode == 13 ? onSubmit(e) : undefined;
+        </script>
+    </body>
+</html>

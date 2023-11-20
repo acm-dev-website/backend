@@ -1,0 +1,52 @@
+/* Vertically and horizontally centered container */
+html, body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+}
+/* Some nice looking gradient background */
+body {
+    background: #e6e6ff;
+    background: -webkit-linear-gradient(top, #e6e6ff 0%, #ffffff 100%);
+    background: linear-gradient(to bottom, #e6e6ff 0%, #ffffff 100%);
+}
+/* flex made future webdev live longer */
+.centerContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.centerContainer .box {
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 5px 5px 5px #ccc;
+    background-color: white;
+}
+.centerContainer .box h2 {
+    margin: 0;
+    margin-bottom: 2rem;
+}
+/* Make the input look bigger and nicer with minimum width of 10px */
+.centerContainer form input {
+    padding: 10px;
+    width: 100vw;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    max-width: 30rem;
+    min-width: 10rem;
+}
+/* Use a as a button so I don't have to pull my hair out when doing certain styling */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+}
+.bluebtn {
+    background-color: #4da6ff;
+}
