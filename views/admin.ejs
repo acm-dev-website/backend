@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Admin</title>
-      <!-- <link rel="stylesheet" href="css/meme.css"> -->
+      <title>Event Admin Panel - ACM</title>
+      <link rel="stylesheet" href="css/styles.css">
+      <link rel="stylesheet" href="css/adminPanel.css">
+      <script src="js/script.js"></script>
     </head>
     <body>
-        <!--POST-->
-        <main>
-          <h1>Admin</h1>
-          <div>
-            <form action="/admin" method="post" class="inputForm">
-                <input type="text" name="name" placeholder="Event Name">
-                <input type="text" name="date" placeholder="Event Date">
-                <textarea name="description" placeholder="Description"></textarea>
-                <input type="submit" value="Submit">
+      <main>
+        <div class="container">
+          <h1 class="title">Admin Panel</h1>
+          <h2 class="subtitle">Create New Event</h2>
+          <div id="form_div">
+            <form class="form" id="event_form" action="/admin" method="post">
+              <label>Event Title</label>
+              <input type="text" id="name" name="name" placeholder="Event Name">
+              <label>Event Date</label>
+              <input type="date" id="date" name="date" placeholder="Event Date">
+              <label>Event Description</label>
+              <textarea id="description" name="description" placeholder="Description"></textarea>
+              <input class="btn" type="submit" value="Submit" onclick="submitEvent(event)">
             </form>
           </div>
-        </main>
-        <!--GET-->
+        </div>
+      </main>
     </body>
 </html>

@@ -1,0 +1,28 @@
+/* Vertically and horizontally centered container */
+html, body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+/* Some nice looking gradient background */
+body {
+  background: #e6e6ff;
+  background: -webkit-linear-gradient(top, #e6e6ff 0%, #ffffff 100%);
+  background: linear-gradient(to bottom, #e6e6ff 0%, #ffffff 100%);
+}
+
+/* Cool looking button */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #7ab5f0;
+  border-radius: 5px;
+  text-decoration: none;
+  color: black;
+}
+
+
+.btn:hover {
+  background-color: #4e9be9;
+  box-shadow: inset 0 0 10px #1a68b6;
+}
