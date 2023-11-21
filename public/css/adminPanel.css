@@ -55,12 +55,12 @@ main {
 
 .form textarea {
   margin: 1rem;
-  width: 15rem;
+  width: 25rem;
   min-height: 5rem;
-  max-height: 10rem;
+  max-height: 15rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 1rem;
-  max-width: 30rem;
-  min-width: 15rem;
+  max-width: 35rem;
+  min-width: 30rem;
 }
