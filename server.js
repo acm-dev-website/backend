@@ -16,8 +16,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 const dbURL = `mongodb+srv://developer:${APIKey}@cluster0.4ztfnxn.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(dbURL);
 
-const root = require('./routes/root');
-app.use('/', root);
+const rootRoute = require('./routes/root');
+app.use('/', rootRoute);
 
 const adminRoute = require('./routes/admin');
 app.use('/admin', adminRoute);
