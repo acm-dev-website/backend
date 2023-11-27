@@ -4,9 +4,7 @@ const bodyParser = require('body-parser');
 
 const {secureCookie} = require('../secureCookie.js');
 
-const {APIKey, ADMINPASS} = require('../Key.json');
-
-const cookieCrypt = new secureCookie(APIKey);
+const cookieCrypt = new secureCookie(process.env.MONGOPASS);
 
 router.get('/', async (req,res)=>{
   // Check and see if auth cookie exists
@@ -16,7 +14,7 @@ router.get('/', async (req,res)=>{
 router.post('/', bodyParser.urlencoded({extended:true}), async (req,res)=>{
   // Check if password is correct
   console.log("login");
-  if(req.body.password !== ADMINPASS) 
+  if(req.body.password !== process.env.ADMINPASS) 
       return res.redirect('/');
 
   // Encrypt cookie
