@@ -8,7 +8,6 @@ const secureCookie = require('./secureCookie.js');
 const fs = require("fs");
 const dotenv = require('dotenv');
 dotenv.config();
-ddfab29298861e41180d61c122c40a9a3d4ee
 
 app.set('view engine','ejs');
 app.use(cookieParser());
