@@ -11,3 +11,6 @@ const variables are captilized
 Use semicolons after lines
 
 arrow functions must have ()
+
+# Migration to env var
+If you're still using config.json, open it and replace the value in .env (copy .env.example to .env)

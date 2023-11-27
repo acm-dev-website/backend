@@ -5,9 +5,8 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser')
 const secureCookie = require('./secureCookie.js');
 const fs = require("fs");
-
-/* Yeah sorry fam, I'm gonna be using env injector tool to manage the API keys, but I'll keep the .json for team members to use */
-let {APIKey, PORT} = fs.existsSync("./Key.json") ? require("./Key.json") : {APIKey:process.env.MONGOPASS, PORT:process.env.PORT};
+const dotenv = require('dotenv');
+dotenv.config();
 
 app.set('view engine','ejs');
 app.use(cookieParser());
@@ -21,9 +20,9 @@ const event_schema = {
 
 const event = mongoose.model('events', event_schema);
 
-const dbURL = `mongodb+srv://developer:${APIKey}@cluster0.4ztfnxn.mongodb.net/?retryWrites=true&w=majority`;
+const dbURL = `mongodb+srv://developer:${process.env.MONGOPASS}@cluster0.4ztfnxn.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(dbURL);
-const cookieCrypt = new secureCookie(APIKey);
+const cookieCrypt = new secureCookie(process.env.MONGOPASS);
 
 function cookieAuthCheck(req, res,next) {
     // Check and see if auth cookie exists
@@ -84,6 +83,7 @@ app.post('/admin/', async (req, res) => {
   res.redirect('/admin');
 });
 
+const PORT = process.env.PORT ?? 3000;
 app.listen(PORT, ()=>{
     console.log("Server listening on port "+PORT);
     console.log(`http://localhost:${PORT}`)
