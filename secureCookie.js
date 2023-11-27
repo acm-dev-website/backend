@@ -1,6 +1,5 @@
 const crypto = require("crypto");
 
-const {APIKey} = require('./Key.json');
 class secureCookie {
     constructor(key) {
         // Digest key as sha-512 hash
@@ -40,7 +39,7 @@ class secureCookie {
 }
 
 const cookieAuthCheck = (req, res, next) => {
-  const cookieCrypt = new secureCookie(APIKey);
+  const cookieCrypt = new secureCookie(process.env.MONGOPASS);
   // Check and see if auth cookie exists
   if(!req.cookies.auth) 
       return res.status(401).redirect('/');
