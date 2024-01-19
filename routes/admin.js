@@ -7,7 +7,7 @@ const {cookieAuthCheck} = require("../secureCookie.js");
 router.use(express.static("public"));
 
 router.get("/", cookieAuthCheck, (req, res)=>{
-  res.render('admin',{});
+  res.sendFile('admin',{});
 })
 
 router.post('/', cookieAuthCheck, async (req, res) => {

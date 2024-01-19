@@ -10,7 +10,7 @@ const cookieCrypt = new secureCookie(APIKey);
 
 router.get('/', async (req,res)=>{
   // Check and see if auth cookie exists
-  return res.render('loginPage',{});
+  return res.sendFile('loginPage',{});
 });
 
 router.post('/', bodyParser.urlencoded({extended:true}), async (req,res)=>{
