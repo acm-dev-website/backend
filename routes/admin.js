@@ -25,13 +25,13 @@ router.post('/', cookieAuthCheck, async (req, res) => {
     return;
   }
 
- const Event = {
+  const Event = {
     name:name,
     date:date,
     description:desc
- };
+  };
 
-// Send to DB
+  // Send to DB
   try {
       const db = mongo_utils.get_client().db();
       const collection = db.collection('events');
