@@ -3,7 +3,6 @@ const router = express.Router();
 const mongo_utils = require('../utils/mongo_utils');
 const path = require('path');
 
-const Event = require("../models/event.js");
 const {cookieAuthCheck} = require("../secureCookie.js");
 
 router.use(express.static("public"));
