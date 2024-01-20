@@ -130,5 +130,6 @@ dist
 .pnp.*
 
 Key.json
+key.json
 
 .DS_Store
