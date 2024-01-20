@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const {secureCookie} = require('../secureCookie.js');
 
@@ -8,9 +9,11 @@ const {APIKey, ADMINPASS} = require('../Key.json');
 
 const cookieCrypt = new secureCookie(APIKey);
 
+const filePath = path.join(__dirname, '../views/');
+
 router.get('/', async (req,res)=>{
   // Check and see if auth cookie exists
-  return res.sendFile('loginPage',{});
+  return res.sendFile(filePath+'loginPage.html',{});
 });
 
 router.post('/', bodyParser.urlencoded({extended:true}), async (req,res)=>{

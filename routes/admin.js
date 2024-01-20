@@ -1,13 +1,17 @@
 const express = require("express");
 const router = express.Router();
+const mongo_utils = require('../utils/mongo_utils');
+const path = require('path');
 
 const Event = require("../models/event.js");
 const {cookieAuthCheck} = require("../secureCookie.js");
 
 router.use(express.static("public"));
 
+const filePath = path.join(__dirname, '../views/');
+
 router.get("/", cookieAuthCheck, (req, res)=>{
-  res.sendFile('admin',{});
+  res.sendFile(filePath+'admin.html',{});
 })
 
 router.post('/', cookieAuthCheck, async (req, res) => {
@@ -21,16 +25,19 @@ router.post('/', cookieAuthCheck, async (req, res) => {
     return;
   }
 
-  // Create new event with field data
-  const newEvent = new Event({
-    name: name,
-    date: date,
-    description: desc
-  });
+ const Event = {
+    name:name,
+    date:date,
+    description:desc
+ };
 
 // Send to DB
   try {
-    const e = await newEvent.save();
+      const db = mongo_utils.get_client().db();
+      const collection = db.collection('events');
+
+      const result = await collection.insertOne(Event);
+      console.log(result);
   }
 
   catch(err) {
