@@ -1,8 +1,8 @@
-/* Main body */
 main {
   height: 100%;
   display: flex;
   justify-content: center;
+  color: white;
 }
 
 .title {
@@ -27,11 +27,12 @@ main {
   max-width: 95%;
   min-height: 50%;
   max-height: 60rem;
-  background-color: #ffffff;
+  background-color: #333333;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 5px 5px 5px #ccc;
+  border-radius: 15px;
+  /* box-shadow: 5px 5px 5px #ccc; */
 }
 
 /* Make the form a tiny bit nicer */
@@ -42,7 +43,7 @@ main {
   justify-content: center;
 }
 
-.form input {
+.form input, .form textarea {
   margin: 1rem;
   width: 15rem;
   min-height: 2rem;
@@ -51,6 +52,10 @@ main {
   margin-bottom: 20px;
   max-width: 30rem;
   min-width: 10rem;
+}
+
+.form:focus {
+  border-color: white;
 }
 
 .form textarea {
@@ -63,4 +68,10 @@ main {
   margin-bottom: 1rem;
   max-width: 35rem;
   min-width: 30rem;
+}
+
+/* bg color for input */
+#name, #date, #description, #time {
+  background-color: #595959;
+  color: white;
 }
