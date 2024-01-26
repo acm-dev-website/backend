@@ -17,7 +17,10 @@ module.exports = {
             _client = 0;
         });
     },
-    
+    /**
+     * Get the mongo client
+     * @returns {MongoClient} client
+     */
     get_client: function(){
         return _client;
     },
