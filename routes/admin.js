@@ -13,11 +13,14 @@ router.get("/", cookieAuthCheck, (req, res)=>{
   res.sendFile(filePath+'admin.html',{});
 })
 
-router.post('/', cookieAuthCheck, async (req, res) => {
+router.post('/submit', cookieAuthCheck, async (req, res) => {
   // Check to make sure all required fields have been filled out
   const name = req.body.name.trim();
   const date = req.body.date;
   const desc = req.body.description.trim();
+  const imageName = req.body.image;
+
+  console.log(req.body);
 
   if (!req.body.name || !req.body.date || !req.body.description) {
     res.status(400).redirect("/admin");
@@ -27,7 +30,8 @@ router.post('/', cookieAuthCheck, async (req, res) => {
   const Event = {
     name:name,
     date:date,
-    description:desc
+    description:desc,
+    imageName: imageName
   };
 
   // Send to DB
