@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongo_utils = require('../utils/mongo_utils');
+const file_utils = require('../utils/file_utils');
 const path = require('path');
 
 const {cookieAuthCheck} = require("../secureCookie.js");
@@ -13,7 +14,7 @@ router.get("/", cookieAuthCheck, (req, res)=>{
   res.sendFile(filePath+'admin.html',{});
 })
 
-router.post('/submit', cookieAuthCheck, async (req, res) => {
+router.post('/submit', cookieAuthCheck, file_utils.upload.single('file'), async (req, res) => {
   // Check to make sure all required fields have been filled out
   const name = req.body.name.trim();
   const date = req.body.date;
