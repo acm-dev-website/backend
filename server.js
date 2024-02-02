@@ -19,6 +19,12 @@ app.use('/', rootRoute);
 const adminRoute = require('./routes/admin');
 app.use('/admin', adminRoute);
 
+const apiRoute = require('./routes/api');
+app.use('/api',apiRoute);
+
+const imageRoute = require('./routes/image');
+app.use('/image',imageRoute);
+
 async function startUp(){
     await mongo_utils.connect_to_server();
 
