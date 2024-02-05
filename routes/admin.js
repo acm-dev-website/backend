@@ -14,14 +14,12 @@ router.get("/", cookieAuthCheck, (req, res)=>{
   res.sendFile(filePath+'admin.html',{});
 })
 
-router.post('/submit', cookieAuthCheck, file_utils.upload.single('file'), async (req, res) => {
+router.post('/submit', cookieAuthCheck, file_utils.upload.single('image'), async (req, res) => {
   // Check to make sure all required fields have been filled out
   const name = req.body.name.trim();
   const date = req.body.date;
   const desc = req.body.description.trim();
-  const imageName = req.body.image;
-
-  console.log(req.body);
+  const imageName = req.file?.filename;
 
   if (!req.body.name || !req.body.date || !req.body.description) {
     res.status(400).redirect("/admin");
@@ -41,6 +39,8 @@ router.post('/submit', cookieAuthCheck, file_utils.upload.single('file'), async 
       const collection = db.collection('events');
 
       const result = await collection.insertOne(Event);
+
+      mongo_utils.upload_file("./images/" + imageName);
       console.log(result);
   }
 

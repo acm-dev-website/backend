@@ -13,7 +13,7 @@
           <h1 class="title">Admin Panel</h1>
           <h2 class="subtitle" onclick="changeEvent()">Create New Event</h2>
           <div id="form_div">
-            <form class="form" id="event_form" action="/admin/submit" method="post">
+            <form class="form" id="event_form" action="/admin/submit" method="post" enctype="multipart/form-data">
               <label>Event Title</label>
               <input type="text" id="name" name="name" placeholder="Event Name">
               <label>Event Date</label>
