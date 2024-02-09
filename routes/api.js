@@ -18,7 +18,7 @@ router.get('/fetch/events', async(req, res)=>{
     })
 })
 
-router.get('/fetch/images/:img_name:', async(req, res)=>{
+router.get('/fetch/images/:img_name', async(req, res)=>{
     const img_name = req.params.img_name;
     const bucket = mongo_utils.get_bucket();
     const downloadStream = bucket.openDownloadStreamByName(img_name);
