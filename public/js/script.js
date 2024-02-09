@@ -28,18 +28,6 @@ function submitEvent(e) {
 
   document.getElementById("event_form").submit();
 
-  //borken!
-  //submitFormData(formData);
+
 }
 
-function submitFormData(formData) {
-  fetch('/admin', {
-      method: 'POST',
-      body: formData
-  }).then(response => {
-      // Handle the response as needed4
-      return response.json();
-  }).catch(error => {
-      console.error('Error:', error);
-  });
-}

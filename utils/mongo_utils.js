@@ -11,17 +11,18 @@ var _bucket;
 var _connected = false;
 
 module.exports = {
+    // Changed to try function, had issues with server not properly connecting when trying to use multer, look into reverting to arrow function
     connect_to_server: async function() {
-        await MongoClient.connect( url, {}).then(client=>{
-            console.log('connection sucessful');
-            _client = client;
-            _bucket = new GridFSBucket(client.db());
+        try {
+            // Changed client and bucket init
+            _client = await MongoClient.connect(url, {});
+            _bucket = new GridFSBucket(_client.db());
             _connected = true;
-        }).catch(err=>{
-            console.log(err);
-            _client = 0;
-            _bucket = 0;
-        });
+            console.log('Connection successful');
+        } catch (error) {
+            console.error('Error connecting to MongoDB:', error);
+            _connected = false;
+        }
     },
     /**
      * Get the mongo client
