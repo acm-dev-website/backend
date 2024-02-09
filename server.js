@@ -7,7 +7,6 @@ const cookieParser = require('cookie-parser');
 
 const {PORT} = require('./Key.json');
 
-app.set('view engine','ejs');
 app.use(cookieParser());
 
 app.use(express.static("public"));
