@@ -66,4 +66,33 @@ router.post('/submit', cookieAuthCheck, file_utils.upload.single('image'), async
   res.redirect('/admin');
 });
 
+// Delete event by name
+router.delete("/delete", /*cookieAuthCheck*/ async (req, res) => {
+  const eventName = req.query.name; // Specify the name of the event to delete
+
+  console.log(`Deleting event with name: ${eventName}`);
+
+  try {
+    const db = mongo_utils.get_client().db();
+    const collection = db.collection('events');
+    
+    // Delete the event by name
+    const result = await collection.deleteOne({ name: eventName });
+    console.log(result);
+
+    if (result.deletedCount === 1) {
+      // Event successfully deleted
+      res.status(200).json({ message: 'Event deleted successfully' });
+    } else {
+      // Event not found
+      res.status(404).json({ message: 'Event not found' });
+    }
+  } catch (err) {
+    // Error handling
+    res.status(500).json({ message: err.message });
+  }
+});
+
+
+
 module.exports = router;
