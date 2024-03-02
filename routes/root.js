@@ -32,6 +32,9 @@ router.post('/', bodyParser.urlencoded({extended:true}), async (req,res)=>{
   return res.redirect('/admin');
 });
 
-
+router.get('/gbm', async (req,res)=>{
+	// Check and see if auth cookie exists
+	return res.sendFile(filePath+'gbm.html',{});
+  });
 
 module.exports = router;
