@@ -11,6 +11,7 @@ const cookieCrypt = new secureCookie(APIKey);
 
 const filePath = path.join(__dirname, '../views/');
 
+
 router.get('/', async (req,res)=>{
   // Check and see if auth cookie exists
   return res.sendFile(filePath+'loginPage.html',{});

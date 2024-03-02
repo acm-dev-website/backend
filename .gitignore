@@ -132,4 +132,5 @@ dist
 Key.json
 key.json
 
+.vscode
 .DS_Store
