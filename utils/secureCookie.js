@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 
-const {APIKey} = require('./Key.json');
+const {APIKey} = require('../Key.json');
 class secureCookie {
     constructor(key) {
         // Digest key as sha-512 hash

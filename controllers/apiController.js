@@ -1,9 +1,7 @@
-const express = require("express");
-const router = express.Router();
 const mongo_utils = require('../utils/mongo_utils');
 
-
-router.get('/fetch/events', async(req, res)=>{
+//fetch/events [get]
+exports.fetchEvent = async(req, res)=>{
     try{
         res.contentType = 'application/json';
 
@@ -22,9 +20,10 @@ router.get('/fetch/events', async(req, res)=>{
         res.status(400).send({msg:'error'});
         return;
     }
-})
+}
 
-router.get('/fetch/images/:img_name', async(req, res)=>{
+///fetch/images/:img_name
+exports.fetchImage = async(req, res)=>{
     try{
         const img_name = req.params.img_name;
         const bucket = mongo_utils.get_bucket();
@@ -35,6 +34,4 @@ router.get('/fetch/images/:img_name', async(req, res)=>{
         res.status(404).send({msg:'error'});
         return;
     }
-});
-
-module.exports = router;
+}
