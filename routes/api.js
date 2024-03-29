@@ -4,7 +4,7 @@ const mongo_utils = require('../utils/mongo_utils');
 
 
 router.get('/fetch/events', async(req, res)=>{
-    try{
+    try {
         res.contentType = 'application/json';
 
         const query = req.query;
@@ -17,7 +17,7 @@ router.get('/fetch/events', async(req, res)=>{
         res.send({
             message: result
         })
-    }catch(e){
+    } catch(e) {
         console.log(e);
         res.status(400).send({msg:'error'});
         return;
