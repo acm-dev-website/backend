@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const {base, login} = require('../controllers/rootController');
 
 
-router.get('/',base);
-router.post('/',login);
+router.get('/', base);
+router.post('/', login);
 
 module.exports = router;

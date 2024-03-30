@@ -16,7 +16,7 @@ fetch('api/fetch/events?type=gbm').then((res) => { return res.json() }).then((da
 		// THIS WILL CRASH IF THE IMAGE DOES NOT EXIST
 		// THIS NEEDS TO BE HANDELED EITHER IN THE API ROUTE OR IN MONGO
 		let image = document.createElement("img");
-		image.src = './api/fetch/images/'+element.imageName;
+		image.src = './api/fetch/images/' + element.imageName;
 		image.alt = element.imageName;
 
 		let date = document.createElement('p');
