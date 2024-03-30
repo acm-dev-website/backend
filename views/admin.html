@@ -11,7 +11,11 @@
     <main>
         <div class="container">
           <h1 class="title">Admin Panel</h1>
-          <h2 class="subtitle" onclick="changeEvent()">Create New Event</h2>
+          <select class="styled-dropdown" name="actions" id="actions">
+            <option value="create">Create New Event</option>
+            <option value="edit">Edit Event</option>
+            <option value="delete">Delete Event</option>
+          </select>
           <div id="form_div">
             <form class="form" id="event_form" action="/admin/submit" method="post" enctype="multipart/form-data">
               <label>Event Title</label>
@@ -27,6 +31,7 @@
               <input class="btn" type="submit" value="Submit" onclick="submitEvent(event)">
             </form>
           </div>
+          <button src="test.html">test button</button>
         </div>
       </main>
     <script src="js/script.js"></script>
