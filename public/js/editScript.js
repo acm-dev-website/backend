@@ -1,6 +1,6 @@
 const eventCardTemplate = document.querySelector("[event-card-template]");
 const eventCardsContainer= document.querySelector(".event-cards");
-const searchInput = document.querySelector("#search");
+const searchInput = document.getElementById('search');
 
 let events = [];
 
@@ -44,48 +44,61 @@ searchInput.addEventListener("input", (e) => {
 })
 
 // Get the modals
-var modal = document.getElementById("editModal");
+let editModal = document.getElementById("editModal");
+let deleteModal = document.getElementById('deleteModal');
     
 // Get all the buttons that open the modals
-var editBtns = document.querySelectorAll(".btn.edit-button");
+let editBtns = document.querySelectorAll(".btn.edit-button");
   
 // Set up span elements for edit and delete modals
-var editSpan = document.getElementById("editClose");
+let editSpan = document.getElementById("editClose");
+let deleteSpan = document.getElementById("deleteClose");
+
   
 // Function to open the modals
-function openEditModal() {
-    console.log("Edit Button clicked!");
-    editModal.style.display = "block";
+function openModal(modalType) {
+    if(modalType === 'edit') {
+        console.log("Edit Button clicked!");
+        editModal.style.display = "block";
+    } else if(modalType === 'delete') {
+        console.log("Delete button clicked!");
+        deleteModal.style.display = "block";
+    }
 }
-
       
 // Function to close the modals
-function closeEditModal() {
-    modal.style.display = "none";
+function closeModal(modalType) {
+    if(modalType === 'edit') {
+        editModal.style.display = "none";
+    } else if (modalType === 'delete') {
+        deleteModal.style.display = "none";
+    }
 }
-
-  
-// Attach click event handlers to all edit and delete buttons
-editBtns.forEach(function (editBtn) {
-    editBtn.onclick = openEditModal;
-});
-
   
 // When the user clicks on x button, close the modal
-editSpan.onclick = closeEditModal;
+editSpan.onclick = () => {
+    closeModal('edit');
+}
 
+deleteSpan.onclick = () => {
+    closeModal('delete');
+}
     
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target == editModal) {
-        closeEditModal();
-    } 
+        closeModal('edit');
+    } else if (event.target == deleteModal) {
+        closeModal('delete');
+    }
 };
+
 
 function toggleDiv() {
     let selectedOption = document.getElementById('actions').value;
     let createDiv = document.getElementById('create');
     let editDiv = document.getElementById('edit');
+    let contain = document.getElementsByClassName('container');
 
     switch(selectedOption) {
         case 'create':

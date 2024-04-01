@@ -23,6 +23,7 @@ main {
 /* Give the background a little spice (credit to zhi)*/
 .container {
     margin: 20px;
+    padding-bottom: 30px;
     min-width: 50%;
     max-width: 95%;
     min-height: 50%;
@@ -32,6 +33,7 @@ main {
     flex-direction: column;
     align-items: center;
     border-radius: 15px;
+    overflow: auto;
     /* box-shadow: 5px 5px 5px #ccc; */
 }
 
