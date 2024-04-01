@@ -11,12 +11,11 @@
     <main>
         <div class="container">
           <h1 class="title">Admin Panel</h1>
-          <select class="styled-dropdown" name="actions" id="actions">
+          <select class="styled-dropdown" name="actions" id="actions" onchange="toggleDiv()">
             <option value="create">Create New Event</option>
             <option value="edit">Edit Event</option>
-            <option value="delete">Delete Event</option>
           </select>
-          <div id="form_div">
+          <div id="create">
             <form class="form" id="event_form" action="/admin/submit" method="post" enctype="multipart/form-data">
               <label>Event Title</label>
               <input type="text" id="name" name="name" placeholder="Event Name">
@@ -31,10 +30,16 @@
               <input class="btn" type="submit" value="Submit" onclick="submitEvent(event)">
             </form>
           </div>
-          <button src="test.html">test button</button>
+          <div id="edit" class="hidden">
+            <div id="editContainer">
+                <!-- this div is dynamically rendered with js -->
+            </div>
+          </div>
         </div>
       </main>
-    <script src="js/script.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/editScript.js"></script>
+    <script src="/js/eventParse.js"></script>
 </body>
 </html>
 

@@ -7,6 +7,7 @@
 	width: 50%;
 	text-align: center;
 }
+
 #events {
 	display: flex;
 	flex-direction: column;
