@@ -1,5 +1,12 @@
 const express = require('express');
 const app = express();
+
+const cors = require('cors');
+const corsOptions = {
+  origin: 'http://localhost:8000'
+};
+app.use(cors(corsOptions));
+
 const bodyParser = require('body-parser');
 const mongo_utils = require('./utils/mongo_utils');
 const cookieParser = require('cookie-parser');

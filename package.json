@@ -12,8 +12,9 @@
   "dependencies": {
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "ejs": "^3.1.9",
-    "jsdocs": "^1.0.0",
+    "jsdocs": "^0.0.1",
     "mongodb": "^6.4.0",
     "mongoose": "^7.6.2",
     "multer": "^1.4.5-lts.1",
