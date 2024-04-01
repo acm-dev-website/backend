@@ -131,6 +131,8 @@ dist
 
 Key.json
 key.json
+credentials.json
+token.json
 
 .vscode
 .DS_Store
