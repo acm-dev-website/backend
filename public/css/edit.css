@@ -67,28 +67,34 @@
 }
 
 #editContainer {
-    width: max-content;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8em;
+  display: flex;
+  flex-direction: column;
 }
 
 #editContainer input {
-    border: none;
-    border-bottom: 1px solid white;
-    background-color: inherit;
-    font-size: 1.5rem;
-    border: 0 0 0 1px black;
-    text-align: center;
-    color: white;
-    outline: none;
+  border: none;
+  border-bottom: 1px solid white;
+  background-color: inherit;
+  font-size: 1.5rem;
+  border: 0 0 0 1px black;
+  text-align: center;
+  color: white;
+  outline: none;
+  margin-bottom: 0.8em;
+}
+
+#itemContainer {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
 }
 
 .editItem {
     padding: 20px;
     display: flex;
     align-items: flex-start;
-    /* width: 100%; */
+    width: 412px;
     height: auto;
     background-color: #3283ff;
     border-radius: 15px;

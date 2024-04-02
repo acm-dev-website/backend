@@ -8,7 +8,7 @@ const {PORT} = require('./Key.json');
 
 app.use(cookieParser());
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended:true }));
 
 const rootRoute = require('./routes/rootRouter');
 app.use('/', rootRoute);

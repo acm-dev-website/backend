@@ -1,54 +1,6 @@
-const eventCardTemplate = document.querySelector("[event-card-template]");
-const eventCardsContainer= document.querySelector(".event-cards");
-const searchInput = document.getElementById('search');
-
-let events = [];
-
-fetch("./raw/events")
-    .then((res) => res.json())
-    .then((data) => {
-        events = data.map(event => {
-            // Getting card template and datafield pointers
-            const card = eventCardTemplate.content.cloneNode(true).children[0];
-            const header = card.querySelector("[data-header]");
-            const description = card.querySelector("[data-description]");
-            const date = card.querySelector("[data-date]");
-            const id = card.querySelector("[data-id]");
-            const eventId = event._id;
-
-            // Filling the text from the json
-            header.textContent = event.name;
-            description.textContent = event.description;
-            date.textContent = new Date(event.date).toLocaleDateString('en-us');
-
-            // Adding the cards to the div for holding cards
-            eventCardsContainer.append(card);
-            return {
-                name: event.name,
-                description: event.description,
-                date: event.date,
-                eventId : eventId,
-                element: card,
-            }
-        });
-  });
-
-// Event for whenever changes whats in the search bar
-searchInput.addEventListener("input", (e) => {
-    const value = e.target.value.toLowerCase();
-        events.forEach(event => {
-        const isHidden = !(event.name.toLowerCase().includes(value)
-        || event.description.toLowerCase().includes(value));
-        event.element.classList.toggle("hide", isHidden);
-    });
-})
-
 // Get the modals
 let editModal = document.getElementById("editModal");
 let deleteModal = document.getElementById('deleteModal');
-    
-// Get all the buttons that open the modals
-let editBtns = document.querySelectorAll(".btn.edit-button");
   
 // Set up span elements for edit and delete modals
 let editSpan = document.getElementById("editClose");
@@ -98,7 +50,6 @@ function toggleDiv() {
     let selectedOption = document.getElementById('actions').value;
     let createDiv = document.getElementById('create');
     let editDiv = document.getElementById('edit');
-    let contain = document.getElementsByClassName('container');
 
     switch(selectedOption) {
         case 'create':
