@@ -2,11 +2,16 @@
 
 const express = require("express");
 const router = express.Router();
-const bodyParser = require('body-parser');
-const {base, login} = require('../controllers/rootController');
+const routes = require('../controllers/rootController');
 
 
-router.get('/', base);
-router.post('/', login);
+router.get('/',routes.homePage);
+router.get('/workshops',routes.workshopPage);
+router.get('/events', routes.eventPage);
+router.get('/calendar',routes.calenderPage);
+router.get('/important-links',routes.importantLinkPage);
+router.get('/leadership',routes.leadershipPage);
+router.get('/merchandise',routes.merchandisePage);
+router.get('/projects',routes.projectPage);
 
 module.exports = router;
