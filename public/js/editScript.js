@@ -8,12 +8,14 @@ let deleteSpan = document.getElementById("deleteClose");
 
   
 // Function to open the modals
-function openModal(modalType) {
+function openModal(modalType, elementId) {
     if(modalType === 'edit') {
         console.log("Edit Button clicked!");
+        console.log(elementId);
         editModal.style.display = "block";
     } else if(modalType === 'delete') {
         console.log("Delete button clicked!");
+        console.log(elementId);
         deleteModal.style.display = "block";
     }
 }
