@@ -1,0 +1,79 @@
+main {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.title {
+    margin-top: 2rem;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.subtitle {
+    text-align: center;
+    font-weight: normal;
+    text-decoration: underline;
+    margin-bottom: 2rem;
+
+}
+
+/* Give the background a little spice (credit to zhi)*/
+.container {
+    margin: 20px;
+    padding-bottom: 30px;
+    min-width: 50%;
+    max-width: 95%;
+    min-height: 50%;
+    max-height: 60rem;
+    background-color: #333333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    overflow: auto;
+    /* box-shadow: 5px 5px 5px #ccc; */
+}
+
+/* Make the form a tiny bit nicer */
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form input, .form textarea {
+    margin: 1rem;
+    width: 15rem;
+    min-height: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    max-width: 30rem;
+    min-width: 10rem;
+}
+
+.form:focus {
+    border-color: white;
+}
+
+.form textarea {
+    margin: 1rem;
+    width: 25rem;
+    min-height: 5rem;
+    max-height: 15rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    max-width: 35rem;
+    min-width: 30rem;
+}
+
+/* bg color for input */
+#name, #date, #description, #timeInput {
+    background-color: #595959;
+    color: white;
+}

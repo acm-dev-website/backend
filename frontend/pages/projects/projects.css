@@ -1,0 +1,94 @@
+.projects {
+  background: #282828;
+  font-family: inter, sans-serif;
+}
+
+.mainHeader {
+  color: rgba(255, 255, 255);
+  text-align: center;
+  font-weight: 600;
+  font-size: 55px;
+}
+
+.projectElement {
+  margin-bottom: auto;
+  list-style-type: none; /* Gets rid of the bullet point that is normally present in a list element */
+  display: flex;
+  justify-content: center;
+  color: white;
+} 
+
+/* Additional rule to remove default left-padding on <ul> */
+ul {
+  padding-left: 0;
+}
+
+.projectInfoBox {
+  margin-bottom: 5%;
+  width: 686px;
+  height: 360px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.20);
+  background: rgba(51, 51, 51, 0.70);
+
+  text-align: left;
+  display: block;
+}
+
+.projectName {
+  margin-left: 10px;  /* Adds whitespace to the left of the details for spacing */
+  display: inline-block;
+  font-size: 25px;
+}
+
+.projectDate {
+  display: inline-block;
+  margin-left: 25px;
+  font-size: 25px;
+}
+
+.projectLeaders, .projectSchedule, .projectDescription {
+  display: block;
+  margin-left: 10px;  /* Adds whitespace to the left of the details for spacing */
+  font-size: 20px;
+}
+
+.projectImage {
+  margin-left: 10px;
+  border-radius: 15px;
+  border: 2px solid rgba(0, 0, 0, 1);
+  height: 360px;
+  display: block;
+  width: 400px;
+  background: url(<path-to-image>), lightgray 0px -335.426px / 100% 391.622% no-repeat;
+}
+
+/* rotates acm logo on hover*/
+.Acm_Logo:hover {
+  cursor: default;
+  transform: rotate(360deg);
+  transition: transform 0.9s ease-in-out;
+}
+
+/* Scroll fade effect made by Chat-GPT */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+.logoContainer {
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+  bottom: 0;
+}
+.logoContainer a .insta {
+  width: 40px;
+  height: 40px;
+}
+.logoContainer a .discord {
+  width: 50px;
+  height: 40px;
+}

@@ -1,0 +1,492 @@
+/* Don't ask me why I name it like this... */
+
+
+.body{
+    height:max-content;
+    width:fit-content;
+}
+.logoContainer {
+    position: relative;
+    display:inline-flex;
+    justify-content:center;
+    bottom: 0;
+}
+
+.logoContainer a .insta {
+    display:inline-flex;
+    width: 40px;
+    height: 40px;
+}
+.logoContainer a .discord {
+    display:inline-flex;
+    width: 50px;
+    height: 40px;
+}
+
+.titleSection{
+    height: 500px;
+    width: auto;
+    margin-top: 100px;
+    margin-bottom:100px;
+    margin-right:0px;
+    margin-left:0px;
+    background: url(Graphics/backGrad.svg);
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+.titleSection .title {
+    vertical-align: top;
+    display:inline-block;
+    text-align: left;
+    color: #FFFFFF;
+    margin: auto;
+    width: 60%;
+
+}
+
+.titleSection .titlefont {
+    position: relative;
+    font-family: inter, sans-serif;
+    font-weight: 600;
+    font-size: 55px;
+    
+
+}
+
+.titleSection .subtextfont{
+    position: relative;
+    font-family: inter, sans-serif;
+    font-size: 36px;
+    font-weight: 300;
+    padding-top: 80px;
+}
+
+.titleSection .image{
+    margin-top:25px;
+    display:inline-block;
+    vertical-align: top;
+    width:20%;
+    border-radius: 150px;
+    height:auto;
+    max-height: 100%;
+}
+
+
+
+.aboutSection{
+    height: 400px;
+    width: auto;
+    margin-top: 100px;
+    margin-bottom:10px;
+    
+}
+
+.aboutSection .text {
+    float:right;
+    vertical-align: top;
+    text-align: left;
+    color: #FFFFFF;
+    margin: auto;
+    width: 40%;
+    margin-right: 90px;
+
+}
+
+.aboutSection .titlefont {
+    position: relative;
+    font-family: inter;
+    font-weight:600;
+    font-size: 48px;
+    margin-bottom: 0;
+    
+
+}
+
+.aboutSection .subtextfont{
+    position: relative;
+    font-family: inter, sans-serif;
+    font-size: 15px;
+    font-weight: 200;
+    margin-top: 5px;
+    line-height: 35px;
+}
+
+.aboutSection .image{
+    float:left;
+    margin-top:40px;
+    vertical-align: top;
+    width:35%;
+    height:auto;
+    max-height:100%;
+    margin-left: 90px;
+
+}
+
+
+
+
+
+
+.anotherSection{
+    height: 450px;
+    width: auto;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    
+}
+
+.anotherSection .text {
+    float:left;
+    vertical-align: top;
+    text-align: left;
+    color: #FFFFFF;
+    margin: auto;
+    width: 40%;
+    margin-left: 90px;
+
+}
+
+.anotherSection .titlefont {
+    position: relative;
+    font-family: inter;
+    font-weight:600;
+    font-size: 40px;
+    margin-bottom: 0;
+    
+
+}
+
+.anotherSection .subtextfont{
+    position: relative;
+    font-family: inter, sans-serif;
+    font-size: 15px;
+    font-weight: 200;
+    padding-top: 5px;
+    width: 90%;
+    line-height: 35px;
+}
+
+.anotherSection .image{
+    float:right;
+    margin-top:40px;
+    vertical-align: top;
+    width:35%;
+    height:auto;
+    margin-right: 90px;
+    max-height:100%;
+
+}
+.anotherSection .orangeLine{
+    width:50%;
+    height:100%;
+
+}
+
+.space{
+    height: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.space .divideLine{
+    height:auto;
+    width: 95%;
+    margin-top:auto;
+}
+
+.divideLine{
+    margin-top:5%;
+    width: 95%;
+}
+
+
+
+
+
+
+.UpcomingSection{
+    margin-top:35px;
+    height: 600px;
+    border-color:blueviolet;
+}
+
+.UpcomingSection .boxes{
+    display:inline-flex;
+    width:75%;
+    height:500px;
+    align-self: center;
+    justify-content:center;
+}
+.UpcomingSection .box1{
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.20);
+    background: rgba(51, 51, 51, 0.70);
+    height:80%;
+    width:35%;
+    flex-shrink: 0;
+}
+
+.UpcomingSection .box2{
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.20);
+    background: rgba(51, 51, 51, 0.70);
+    height:80%;
+    width:35%;
+    margin-left:30px;
+    margin-right:30px;
+    flex-shrink: 0;
+}
+.UpcomingSection .box3{
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.20);
+    background: rgba(51, 51, 51, 0.70);
+    height:80%;
+    width:35%;
+    flex-shrink: 0;
+}
+
+.UpcomingSection .box1 .titlefont{
+    margin-top:20px;
+    margin-bottom:10px;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.UpcomingSection .box1 .greyline{
+    margin-top:0px;
+    width:90%;
+}
+.UpcomingSection .box1 .subtitlefont{
+    color: #FFC904;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.UpcomingSection .box1 .subtextfont{
+    padding-right:15px;
+    padding-left:15px;
+    height:fit-content;
+    width: fit-content;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 23px;
+}
+
+
+.UpcomingSection .box2 .titlefont{
+    margin-top:20px;
+    margin-bottom:10px;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.UpcomingSection .box2 .greyline{
+    margin-top:0px;
+    width:90%;
+}
+.UpcomingSection .box2 .subtitlefont{
+    color: #FFC904;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.UpcomingSection .box2 .subtextfont{
+    padding-right:15px;
+    padding-left:15px;
+    height:fit-content;
+    width: fit-content;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 23px;
+}
+
+
+.UpcomingSection .box3 .titlefont{
+    margin-top:20px;
+    margin-bottom:10px;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.UpcomingSection .box3 .greyline{
+    margin-top:0px;
+    width:90%;
+}
+.UpcomingSection .box3 .subtitlefont{
+    color: #FFC904;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.UpcomingSection .box3 .subtextfont{
+    padding-right:15px;
+    padding-left:15px;
+    height:fit-content;
+    width: fit-content;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 23px;
+}
+
+
+
+
+
+.MerchandiseSection{
+    padding-top:15px;
+    height: 700px;
+    border-color:blueviolet;
+}
+.MerchandiseSection .sectionTitle{
+    margin-bottom:100px ;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 48px;
+}
+.MerchandiseSection .merch{
+    padding-top:10px;
+    height:65%;
+}
+.MerchandiseSection .titlefont{
+    margin-top:0%;
+}
+
+.MerchandiseSection .boxes{
+    display:inline-flex;
+    width:75%;
+    height:500px;
+    align-self: center;
+    justify-content:center;
+}
+.MerchandiseSection .box1{
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.20);
+    background: rgba(51, 51, 51, 0.70);
+    height:80%;
+    width:35%;
+    flex-shrink: 0;
+}
+
+.MerchandiseSection .box2{
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.20);
+    background: rgba(51, 51, 51, 0.70);
+    height:80%;
+    width:35%;
+    margin-left:30px;
+    margin-right:30px;
+    flex-shrink: 0;
+}
+.MerchandiseSection .box3{
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.20);
+    background: rgba(51, 51, 51, 0.70);
+    height:80%;
+    width:35%;
+    flex-shrink: 0;
+}
+
+.MerchandiseSection .titlefont{
+    margin-top:0px;
+    margin-bottom:10px;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.MerchandiseSection .greyline{
+    margin-top:0px;
+    width:90%;
+}
+.MerchandiseSection .subtitlefont{
+    padding-left:35px;
+    color: #FFC904;
+    text-align: left;
+    font-family: Inter;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.MerchandiseSection .subtextfont{
+    padding-right:15px;
+    padding-left:15px;
+    height:fit-content;
+    width: fit-content;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 23px;
+}
+
+
+
+/*About UCF ACM with rainbow line under and picture to the right */
+/* Description under*/
+
+/*More Text for about section with a picture to the right*/
+
+
+/*Divider Line */
+
+
+/*Boxes for upcoming events workshops and projects*/
+
+/*Each box will include a title, text, and a description*/
+
+
+
+/*Divider Line */
+/*Merch boxes */
+/*Within each box there should be a picture spot, title of the product, price, and link to the merch page */
+
+
+/* These are the links */
+      

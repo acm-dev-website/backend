@@ -1,0 +1,12 @@
+.linksHeader{
+  text-align: center;
+  font-size: 35px;
+}
+
+/* rotates acm logo on hover*/
+.Acm_Logo:hover
+{
+    cursor: default;
+    transform: rotate(360deg);
+    transition: transform 0.9s ease-in-out;
+}

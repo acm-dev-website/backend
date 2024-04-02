@@ -1,0 +1,182 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #282828;
+  background-repeat: no-repeat;
+  border: 0px;
+  text-align: center;
+  position: relative;
+}
+
+.main {
+  text-align: center;
+  background-color: grey;
+}
+
+.background_n_logo {
+  background-image: url("coder.gif");
+  padding-bottom: 30px;
+  padding-top: 30px;
+  overflow: hidden;
+}
+
+.Acm_Logo {
+  display: block;
+  height: auto;
+  width: 92px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.btn_n_background {
+  padding: 8px;
+  display: flex;
+  align-content: row;
+  justify-content:space-evenly;
+  flex-flow:wrap;
+
+}
+
+
+
+.btn {
+  display:block;
+  width:150px;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  color: #000000;
+  padding: 10px;
+  border-top: 1px solid darkgray;
+  border-bottom: 1px solid darkgray;
+  border-left: 1px solid darkgray;
+  border-right: 1px solid darkgray;
+  border-radius: 30px;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.15s,
+    color 0.15s;
+  float:left;
+  background-color: whitesmoke;
+}
+/*enlarges buttons on hover*/
+.btn:hover, .dropdown-button:hover {
+  transform: scale(1.12);
+}
+.dropdown {
+  position: relative;
+}
+.dropdown-button{
+  background-color: whitesmoke;
+  display:block;
+  width:150px;
+  max-width: 100%;
+  font-family: Roboto, sans-serif;
+  font-size:15px;
+  color: #000000;
+  border-top: 1px solid darkgray;
+  border-bottom: 1px solid darkgray;
+  border-left: 1px solid darkgray;
+  border-right: 1px solid darkgray;
+  padding: 10px;
+  border-radius: 30px;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.15s,
+    color 0.15s;
+  float:left;
+  z-index: 1;
+}
+
+
+/* Dropdown Button */
+
+.dropbtn {
+  background-color: whitesmoke;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  display:block;
+  margin: 10px;
+}
+
+
+
+/* Dropdown Content (Hidden by Default) */
+
+.dropdown-content {
+  background-color: whitesmoke;
+  display: none;
+  position: absolute;
+  align-content: column;
+  justify-content: space-between;
+  width: 100%;
+  top: 3.8rem;
+
+}
+
+/* Links inside the dropdown */
+
+
+.dropdown-content a {
+  display:block;
+  width:100px;
+  border-top: 1px solid darkgray;
+  border-bottom: 1px solid darkgray;
+  border-left: 1px solid darkgray;
+  border-right: 1px solid darkgray;
+  font-family: Roboto, sans-serif;
+  color: #000000;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 30px;
+  margin-left: 26px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.15s,
+    color 0.15s;
+  float:left;
+  background-color:white;
+}
+
+
+/* Change color of dropdown links on hover */
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-button{background-color:lightgrey}
+
+/* Yes, I know the the block happen before it reaches the button *darn those margins*. There's a fix, but I'm too lazy to apply it (p.s. involves JS)... */
+.dropdown:hover .dropdown-content {display: block;}
+
+.btn:hover {
+  background-color: lightgrey;
+}
+
+.btn:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+
+
+
+.Acm_Logo:hover
+{
+    cursor: default;
+    transform: rotate(360deg);
+    transition: transform 0.9s ease-in-out;
+}
+
+
+

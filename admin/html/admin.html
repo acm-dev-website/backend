@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Admin Panel - ACM</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/adminPanel.css">
+    <link rel="stylesheet" href="/css/edit.css">
+</head>
+<body>
+    <main>
+        <div class="container">
+          <h1 class="title">Admin Panel</h1>
+          <select class="styled-dropdown" name="actions" id="actions" onchange="toggleDiv()">
+            <option value="create">Create New Event</option>
+            <option value="edit">Edit Event</option>
+          </select>
+          <div id="create" class="hidden">
+            <form class="form" id="event_form" action="/admin/submit" method="post" enctype="multipart/form-data">
+              <label>Event Title</label>
+              <input type="text" id="name" name="name" placeholder="Event Name">
+              <label>Event Date</label>
+              <input type="date" id="date" name="date" placeholder="Event Date">
+              <label>Event Time</label>
+              <input type="time" id="timeInput" name="time" placeholder="Event Time">
+              <label>Event Description</label>
+              <textarea id="description" name="description" placeholder="Description"></textarea>
+              <label>Event Image</label>
+              <input type="file" id="image" name="image" placeholder="Event Image">
+              <input class="btn" type="submit" value="Submit" onclick="submitEvent(event)">
+            </form>
+          </div>
+          <div id="edit" class="hidden">
+            <div id="editContainer">
+              <input type="search" id="search" placeholder="Search for events here!">
+                <div id="itemContainer">
+                  <!-- this div is dynamically rendered with js -->
+                </div>
+            </div>
+          </div>
+          <div id="editModal" class="modal">
+            <div class="modal-content">
+              <span class="close" id="editClose">&times;</span>
+              <p>Edit modal!</p>
+            </div>
+          </div>
+          <div id="deleteModal" class="modal">
+            <div class="modal-content">
+              <span class="close" id="deleteClose">&times;</span>
+              <h1>Are you sure you want to delete this event?</h1>
+              <p id="deleteText">This is a destructive action, and cannot be reversed! 
+                Do you still want to proceed?
+              </p>
+              <div id="confirmButtons">
+                <button id="yesBtn" onclick = "delEvent()">Yes</button>
+                <button id="noBtn" onclick="closeModal('delete')">No</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    <script src="/js/script.js"></script>
+    <script src="/js/editScript.js"></script>
+    <script src="/js/eventParse.js"></script>
+</body>
+</html>

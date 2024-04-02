@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="styleSheet" href="projects.css"/>
+  <link rel="styleSheet" href="../style.css"/>
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css"> 
+  <link rel="icon" href="../Graphics/favicon.ico">    
+</head>
+<body>
+  <div class="main" >
+              <div class="background_n_logo">
+                <div class = "spin2">
+                  <img class="Acm_Logo" src="../Graphics/acmlogo.png">
+                  </div>
+              </div>
+              <div class="btn_n_background">
+                <div class="btn_n_background">
+                    <a href="/" >
+                        <button class = "btn homebtn">Home</button>
+                     </a>
+                     <a href="/leadership" >
+                        <button class = "btn leadershipbtn">Leadership</button>
+                     </a>
+                     <a href="/projects" >
+                        <button class = "btn projectsbtn">Projects</button>
+                     </a>
+                     <a href="/workshops" >
+                        <button class = "btn workshopsbtn">Workshops</button>
+                     </a>
+                     <a href="/events" >
+                        <button class = "btn eventsbtn">Events</button>
+                     </a>
+                  <div class="dropdown">
+                    <button class="dropdown-button morebtn">More</button>
+                    <div class="dropdown-content">
+                      <a href="/sponsorships" class="btn_dropdown sponsorshipsbtn">Sponsorships</a>
+                      <a href="/merchandise" class="btn_dropdown merchandisebtn">Merchandise</a>
+                      <a href="/calendar" class="btn_dropdown calendarbtn">Calendar</a>
+                      <a href="/important-links" class="btn_dropdown importantlinksbtn">Important Links</a>
+                    </div>
+                  </div>
+                </div>
+  </div>
+  <div class="projects">
+
+    <h1 class="mainHeader">Current and Upcoming Projects</h1>
+    <ul id="curProjectList"></ul>
+    
+    <h1 class="mainHeader">Past Projects</h1>
+    <ul id="pastProjectList"></ul>
+
+    <script type="module">
+        import {apiFetch} from '../apiParser.js';
+        // Get the respective ul elements to append event elements to
+        const ucEventList = document.getElementById("curProjectList"); //could be null if page loads weird (use window.onload())
+        apiFetch(ucEventList, "projects");
+
+        const pastEventList = document.getElementById("pastProjectList");
+         apiFetch(pastEventList, "projects");
+    </script>
+
+  </div>
+
+  <footer> 
+    <div class="logoContainer">
+     <a href="https://www.instagram.com/ucfacm/"> <img class="insta" src ="../Graphics/instagramlogo.png"/></a>
+     <a href="https://discord.gg/v5MGt27PsV" > <img class="discord" src="../Graphics/discordlogo.png"/></a>
+    </div>
+   </footer>
+
+</body>
+</html>

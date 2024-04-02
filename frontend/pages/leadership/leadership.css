@@ -1,0 +1,213 @@
+
+/* Responisve checkpoints : <600px, 601px, 768px, 992px, 1200px */
+
+/* container is meant to be the entire screen below nav bar */
+  .container
+  {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* background-color: blue; */
+    height: 100%; /* Take up full viewport height */
+    /* Take up full viewport width */
+    background: url(Graphics/backGrad.svg);
+    background-size:cover;
+    background-repeat: no-repeat;
+
+  }
+
+  @media (max-width: 600px) 
+  {
+    .container
+    {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .sides
+  {
+    width: 17.5%; /* Set a height or adjust as needed */
+    /* border: 1px solid #000; Optional: Add borders for visualization */
+    box-sizing: border-box;
+    /* background-color: lightblue; Side divs background color */
+  }
+
+  .large 
+  {
+    width: 65%;
+  }
+
+/*Title for the leadership page*/
+  .mainHeader 
+  {
+    text-align: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 4vw;
+    font-weight: 100;
+    color: rgb(255, 255, 255);
+    display: inline-block;
+    margin-bottom: 5%
+  }
+
+  @media(max-width: 600px)
+  {
+    .mainHeader
+    {
+      font-size: 50px;
+    }
+  }
+
+  
+
+/*Leadership roles*/
+  .leadershipRolesRow1
+  {
+     position: relative;
+    height: auto;
+    /* background-color: grey; */
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  @media(max-width: 600px)
+  {
+    .leadershipRolesRow1
+    {
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 0%;
+    }
+  }
+
+  .leadershipRolesRow2
+  {
+    position: relative;
+    height: auto;
+    /* background-color: grey; */
+    margin-bottom: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  @media(max-width: 600px)
+  {
+    .leadershipRolesRow2
+    {
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 0%;
+    }
+  }
+
+  .leaderProfile
+  {
+    position: relative;
+    height: 50%;
+    width: 30%;
+    /* background-color: blanchedalmond; */
+    /* border: 1px solid black; */
+  }
+
+  @media(max-width: 600px)
+  {
+    .leaderProfile
+    {
+      margin-bottom: 5%;
+      width: 100%
+    }
+  }
+
+  /* 13vw for height*/
+  .leaderPicture
+  {
+    width: 70%;
+    border-radius: 100%;
+  
+  }
+
+  @media(max-width: 600px)
+  {
+    .leaderPicture
+    {
+      width: 60%;
+    }
+  }
+
+  .leaderName
+  {
+    font-size: 2vw;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(255, 255, 255);
+    /* border: 1px solid; */
+  }
+ 
+  @media(max-width: 850px)
+  {
+    .leaderName
+    {
+      font-size: 22px;
+      /* border: 1px solid; */
+    }
+  }
+
+
+  @media(max-width: 600px)
+  {
+    .leaderName
+    {
+      font-size: 5vw;
+      /* border: 1px solid red; */
+    }
+  }
+
+  .leaderRole
+  {
+    font-size: 1vw;
+    font-weight:100;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(255, 255, 255);
+    /* border: 1px solid;   */
+  }
+
+  @media(max-width: 600px)
+  {
+    .leaderRole
+    {
+      font-size: 3vw;
+    }
+  }
+
+@media(min-width: 601px)
+{
+  .leaderRole
+  {
+    font-size: 2vw;
+  }
+}
+
+/* rotates acm logo on hover*/
+.spin2 {
+  animation:spin 1s linear infinite;
+  transition-property: transform;
+   
+}
+
+.logoContainer {
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+  bottom: 0;
+}
+.logoContainer a .insta {
+   width: 40px;
+   height: 40px;
+}
+.logoContainer a .discord {
+   width: 50px;
+   height: 40px;
+}
+
+
