@@ -7,7 +7,9 @@ const cookieParser = require('cookie-parser');
 const {PORT} = require('./Key.json');
 
 app.use(cookieParser());
-app.use(express.static("public"));
+app.use(express.static("frontend")); //iamges & fonts
+app.use(express.static("frontend/pages")); //html and css
+app.use(express.static("admin")) //for admin panel
 app.use(bodyParser.urlencoded({ extended:true }));
 
 const rootRoute = require('./routes/rootRouter');

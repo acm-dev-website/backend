@@ -7,7 +7,11 @@ const multer = require("multer");
 const { GridFSBucket, ObjectID } = require('mongodb');
 const storage = multer.memoryStorage();
 
-const filePath = path.join(__dirname, '../views/');
+const filePath = path.join(__dirname, '../admin/html/');
+const {APIKey, ADMINPASS} = require('../Key.json');
+const {secureCookie} = require('../utils/secureCookie');
+const cookieCrypt = new secureCookie(APIKey);
+
 /**
  * render admin html
  * @param {Express.Request} req 
@@ -16,6 +20,27 @@ const filePath = path.join(__dirname, '../views/');
 exports.render = async(req, res)=>{
     res.sendFile(filePath+'admin.html',{});
 }
+
+exports.loginRender = async(req,res)=>{
+    res.sendFile(filePath+'loginPage.html');
+}
+
+//if this isn't working go into router and include bodyParser.urlencoded({extended:true}) as middleware
+// -jake
+exports.login = async (req,res)=>{
+    // Check if password is correct
+    console.log("login");
+    if(req.body.password !== ADMINPASS) 
+        return res.redirect('/');
+  
+    // Encrypt cookie
+    const auth = cookieCrypt.encrypt((new Date()).toString());
+    // Set cookie
+    res.cookie('auth',auth,{httpOnly:true});
+  
+    return res.redirect('/admin');
+  }
+  
 
 exports.create = async (req, res)=>{
   console.log(req.body);
