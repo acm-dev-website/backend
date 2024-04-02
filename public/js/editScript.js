@@ -6,20 +6,55 @@ let deleteModal = document.getElementById('deleteModal');
 let editSpan = document.getElementById("editClose");
 let deleteSpan = document.getElementById("deleteClose");
 
-  
+let currentEventName = null;
+
 // Function to open the modals
-function openModal(modalType, elementId) {
+function openModal(modalType, elementName) {
     if(modalType === 'edit') {
         console.log("Edit Button clicked!");
-        console.log(elementId);
+        
         editModal.style.display = "block";
     } else if(modalType === 'delete') {
         console.log("Delete button clicked!");
-        console.log(elementId);
+        console.log(elementName);
+        currentEventName = elementName;
         deleteModal.style.display = "block";
     }
 }
       
+
+function delEvent() {
+    if (!currentEventName) {
+        console.error('No event ID to delete.');
+        return;
+    }
+   
+    console.log(currentEventName);
+    fetch(`http://localhost:3009/admin/delete?eventName=${currentEventName}`, {
+        method: 'DELETE',
+        //body: {name : currentEventName}
+    })
+    .then((res) => {
+        if (res.ok) {
+            // Remove the event card from UI
+            const eventCard = document.querySelector(`.editItem[data-id="${currentEventName}"]`);
+            if (eventCard) {
+                eventCard.remove();
+            }
+            closeModal('delete');
+        } else {
+            throw 'Failed to delete event';
+        }
+    })
+    .catch((error) => {
+        console.error('Error deleting event:', error);
+        alert('Failed to delete event. Please try again.');
+    })
+    .finally(() => {
+        currentEventId = null; // Reset the currentEventId after deletion
+    });
+}
+
 // Function to close the modals
 function closeModal(modalType) {
     if(modalType === 'edit') {

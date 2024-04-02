@@ -29,7 +29,7 @@ function addElement(element) {
 			<p>${element.description}</p>
 			<p><b>${element.date}</b></p>
 			<button class="editBtn" onclick="openModal('edit', '${element.name}')" >Edit</button>
-			<button class="editBtn deleteBtn" onclick="openModal('delete', '${element._id}')" >Delete</button>
+			<button class="editBtn deleteBtn" onclick="openModal('delete', '${element.name}')" >Delete</button>
 		</div>
 	</div>
 `;
