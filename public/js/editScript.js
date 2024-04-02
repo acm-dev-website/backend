@@ -7,27 +7,29 @@ let editSpan = document.getElementById("editClose");
 let deleteSpan = document.getElementById("deleteClose");
 let currentEventId;
 
-  
+let currentEventId = null;
+
 // Function to open the modals
-function openModal(modalType, elementId) {
-    if(modalType === 'edit') {
+function openModal(modalType, eventId) {
+    if (modalType === 'edit') {
         console.log("Edit Button clicked!");
         editModal.style.display = "block";
-    } else if(modalType === 'delete') {
+    } else if (modalType === 'delete') {
         console.log("Delete button clicked!");
-        console.log(elementId);
-        currentEventId = elementId;
+        console.log(eventId);
+        currentEventId = eventId;
+        console.log(currentEventId);
         deleteModal.style.display = "block";
     }
 }
 
-function deleteEvent() {
+function delEvent() {
     if (!currentEventId) {
         console.error('No event ID to delete.');
         return;
     }
 
-    fetch(`/admin/delete?name=${currentEventId}`, {
+    fetch(`/admin/delete?id=${currentEventId}`, {
         method: 'DELETE',
     })
     .then((res) => {
@@ -57,6 +59,7 @@ function closeModal(modalType) {
         editModal.style.display = "none";
     } else if (modalType === 'delete') {
         deleteModal.style.display = "none";
+        currentEventId = null;
     }
 }
   

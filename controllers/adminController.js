@@ -61,16 +61,17 @@ exports.create = async (req, res)=>{
 
 // Delete event by name
 exports.deleteEvent = async (req,res)=>{
-  const eventName = req.query.name; // Specify the name of the event to delete
+  console.log('ass');
+  const eventId = req.query.id; // Specify the name of the event to delete
 
-  console.log(`Deleting event with name: ${eventName}`);
+  console.log(`Deleting event with name: ${eventId}`);
 
   try {
     const db = mongo_utils.get_client().db();
     const collection = db.collection('events');
     
     // Delete the event by name
-    const result = await collection.deleteOne({ name: eventName });
+    const result = await collection.deleteOne({ _id : eventId });
     console.log(result);
 
     if (result.deletedCount === 1) {
