@@ -3,26 +3,40 @@ const path = require('path');
 const {secureCookie} = require('../utils/secureCookie.js');
 const {APIKey, ADMINPASS} = require('../Key.json');
 const cookieCrypt = new secureCookie(APIKey);
-const filePath = path.join(__dirname, '../views/');
+const filePath = path.join(__dirname, '../frontend/pages/');
 
+exports.homePage = (req,res)=>{
+    res.sendFile(filePath+'index/index.html');
+}
 
-exports.base = async (req,res)=>{
-  // Check and see if auth cookie exists
-  return res.sendFile(filePath+'loginPage.html',{});
-};
+exports.workshopPage = (req,res)=>{
+    res.sendFile(filePath+'workshops/workshops.html');
+}
 
-//if this isn't working go into router and include bodyParser.urlencoded({extended:true}) as middleware
-// -jake
-exports.login = async (req,res)=>{
-  // Check if password is correct
-  console.log("login");
-  if(req.body.password !== ADMINPASS) 
-      return res.redirect('/');
+exports.eventPage = (req,res)=>{
+    res.sendFile(filePath+'events/events.html');
+}
 
-  // Encrypt cookie
-  const auth = cookieCrypt.encrypt((new Date()).toString());
-  // Set cookie
-  res.cookie('auth',auth,{httpOnly:true});
+exports.calenderPage = (req,res)=>{
+    res.sendFile(filePath+'calendar/calendar.html');
+}
 
-  return res.redirect('/admin');
+exports.importantLinkPage = (req,res)=>{
+    res.sendFile(filePath+'important-links/important-links.html');
+}
+
+exports.leadershipPage = (req,res)=>{
+    res.sendFile(filePath+'leadership/leadership.html');
+}
+
+exports.merchandisePage = (req,res)=>{
+    res.sendFile(filePath+'merchandise/merchandise.html');
+}
+
+exports.projectPage = (req,res)=>{
+    res.sendFile(filePath+'projects/projects.html');
+}
+
+exports.newBase = async (req,res)=>{
+    return res.sendFile(filePath+'index/index.html');
 }
