@@ -5,13 +5,13 @@ const router = express.Router();
 const routes = require('../controllers/rootController');
 
 
-router.get('/',routes.homePage);
-router.get('/workshops',routes.workshopPage);
+router.get('/', routes.homePage);
+router.get('/workshops', routes.workshopPage);
 router.get('/events', routes.eventPage);
-router.get('/calendar',routes.calenderPage);
-router.get('/important-links',routes.importantLinkPage);
-router.get('/leadership',routes.leadershipPage);
-router.get('/merchandise',routes.merchandisePage);
-router.get('/projects',routes.projectPage);
+router.get('/calendar', routes.calenderPage);
+router.get('/important-links', routes.importantLinkPage);
+router.get('/leadership', routes.leadershipPage);
+router.get('/merchandise', routes.merchandisePage);
+router.get('/projects', routes.projectPage);
 
 module.exports = router;

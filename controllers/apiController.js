@@ -8,6 +8,7 @@ exports.fetchEvent = async(req, res)=>{
         const getName = req.query.name;
         const getType = req.query.type;
         const getDate = req.query.date;
+        
 
         const query = {};
         if(getName) {
@@ -25,7 +26,7 @@ exports.fetchEvent = async(req, res)=>{
         const db = mongo_utils.get_client().db();
         const collection = db.collection('events');
 
-        const result = await collection.find(query, { projection: { _id : 0 } }).toArray();
+        const result = await collection.find(query).toArray();
 
         res.send({
             message: result,

@@ -1,6 +1,7 @@
 const mongo_utils = require('../utils/mongo_utils');
 const path = require('path');
 
+
 // Stuff for gridfsbucket, also set up multer as to use req.file.originalname
 const multer = require("multer");
 const { GridFSBucket, ObjectID } = require('mongodb');
@@ -35,7 +36,7 @@ exports.login = async (req,res)=>{
     // Encrypt cookie
     const auth = cookieCrypt.encrypt((new Date()).toString());
     // Set cookie
-    res.cookie('auth',auth,{httpOnly:true});
+    res.cookie('auth', auth, { httpOnly: true });
   
     return res.redirect('/admin');
   }
@@ -47,9 +48,10 @@ exports.create = async (req, res)=>{
     const name = req.body.name.trim();
     const date = req.body.date;
     const desc = req.body.description.trim();
+    const time = req.body.time;
     const imageName = req.file.originalname;
 
-    if (!req.body.name || !req.body.date || !req.body.description) {
+    if (!req.body.name || !req.body.date || !req.body.description || !req.body.time) {
         res.status(400).redirect("/admin");
         return;
     }
@@ -58,6 +60,7 @@ exports.create = async (req, res)=>{
         name:name,
         date:date,
         description:desc,
+        time:time,
         imageName: imageName
     };
 
@@ -86,27 +89,39 @@ exports.create = async (req, res)=>{
 
 // Delete event by name
 exports.deleteEvent = async (req,res)=>{
-  const eventName = req.query.name; // Specify the name of the event to delete
 
-  console.log(`Deleting event with name: ${eventName}`);
+  const eventName = req.query.eventName; // Specify the name of the event to delete
+  const currentEventImgName = req.query.imgName;
+  // console.log(req.query.eventName);
+  // console.log(req.query.imgName);
+  // console.log(`Deleting event with name: ${eventName}`);
 
   try {
     const db = mongo_utils.get_client().db();
-    const collection = db.collection('events');
     
-    // Delete the event by name
-    const result = await collection.deleteOne({ name: eventName });
-    console.log(result);
+    const imgCollection = db.collection('images.files')
+    const imgId = await imgCollection.findOne({filename : currentEventImgName});
+    const imgResult = await imgCollection.deleteOne({ filename : currentEventImgName });
 
-    if (result.deletedCount === 1) {
-      // Event successfully deleted
+    const chunksCollection = db.collection('images.chunks')
+    const chunksResult = await chunksCollection.deleteMany({ files_id : imgId._id });
+
+    const collection = db.collection('events');
+    const result = await collection.deleteOne({ name : eventName });
+    
+    console.log(result);
+    console.log(imgResult);
+    console.log(chunksResult);
+
+    if (result.deletedCount >= 1 && imgResult.deletedCount >= 1 && chunksResult.deletedCount >= 1){
       res.status(200).json({ message: 'Event deleted successfully' });
+      return;
     } else {
-      // Event not found
-      res.status(404).json({ message: 'Event not found' });
+      res.status(404).json({ message: ':(' });
+      return;
     }
   } catch (err) {
-    // Error handling
     res.status(500).json({ message: err.message });
+    return;
   }
 }
