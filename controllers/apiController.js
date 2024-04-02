@@ -5,19 +5,34 @@ exports.fetchEvent = async(req, res)=>{
     try{
         res.contentType = 'application/json';
 
-        const query = req.query;
+        const getName = req.query.name;
+        const getType = req.query.type;
+        const getDate = req.query.date;
+
+        const query = {};
+        if(getName) {
+            query.name = { $regex: getName, $options: 'i' };
+        } 
+        
+        if(getType) {
+            query.type = getType;
+        }
+
+        if(getDate) {
+            query.date = getDate;
+        }
+
         const db = mongo_utils.get_client().db();
         const collection = db.collection('events');
 
-
-        const result = await collection.find(query,{projection:{_id:0}}).toArray();
+        const result = await collection.find(query, { projection: { _id : 0 } }).toArray();
 
         res.send({
-            message: result
+            message: result,
         })
-    }catch(e){
+    } catch(e) {
         console.log(e);
-        res.status(400).send({msg:'error'});
+        res.status(400).send({ msg: 'Internal Server Error' });
         return;
     }
 }

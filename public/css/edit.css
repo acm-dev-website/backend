@@ -1,0 +1,182 @@
+
+.hide {
+    display: none;
+  }
+
+/*Modal box styling*/
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #636363;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 5px solid rgba(0, 0, 0, 0.596);
+    width: 80%; 
+    text-align: center;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  /*Cool totally not stolen focus animation to make x button black on hover*/
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .styled-dropdown {
+    display: inline-block;
+    align-items: center;
+    background-color: #333333;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 20px;
+    text-decoration: underline;
+    text-align: center;
+    font-size: 25px;
+    font-family: inherit;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+#editContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+#editContainer input {
+  border: none;
+  border-bottom: 1px solid white;
+  background-color: inherit;
+  font-size: 1.5rem;
+  border: 0 0 0 1px black;
+  text-align: center;
+  color: white;
+  outline: none;
+  margin-bottom: 0.8em;
+}
+
+#itemContainer {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+}
+
+.editItem {
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    width: 412px;
+    height: auto;
+    background-color: #3283ff;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.editItem:hover {
+    background-color: #005ae5;
+}
+
+.editItem h2, .editItem p {
+    margin: 0;
+}
+
+.editItem h2 {
+    margin-bottom: 7px;
+}
+
+.editImage {
+    flex-shrink: 0;
+    margin-right: 10px;
+}
+
+.editBtn {
+    background-color: #828282;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.deleteBtn {
+    background-color: #EE4B2B;
+    transition: 0.3s;
+}
+
+.editBtn:hover {
+    background-color: #636363;
+}
+
+
+.deleteBtn:hover {
+    background-color: #a33720;
+}
+
+#deleteText {
+    background-color: rgba(232, 42, 42, 0.8);
+    color: white; 
+    padding: 10px; 
+    text-align: center;
+    max-width: 40%;
+    margin: 0 auto;
+    border-radius: 15px;
+  }
+
+  #confirmButtons {
+    margin-top: 20px;
+  }
+
+  #yesBtn, #noBtn {
+    padding: 15px 25px;
+    color: white;
+    border: 2px solid gray;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  #yesBtn {
+    background-color: green;
+  }
+
+  #yesBtn:hover {
+    background-color: #1E5D1F;
+  }
+
+  #noBtn {
+    background-color: #e82a2a;
+  }
+
+  #noBtn:hover {
+    background-color: #b92121;
+  }

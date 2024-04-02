@@ -1,33 +1,40 @@
-const fragment = document.createDocumentFragment();
+window.onload = displayEvents();
+let editContainer = document.getElementById('itemContainer');
 
-fetch('api/fetch/events?type=gbm').then((res) => { return res.json() }).then((data) => {
-	data.message.forEach(element => {
-		console.log(element);
-		let container = document.createElement('div');
-		container.className = 'eventContainer';
-
-		let title = document.createElement("h1");
-		title.textContent = element.name;
-
-		let description = document.createElement("p");
-		description.textContent = element.description;
-
-		// need to download image and append it as well - idk what images even exist.
-		// THIS WILL CRASH IF THE IMAGE DOES NOT EXIST
-		// THIS NEEDS TO BE HANDELED EITHER IN THE API ROUTE OR IN MONGO
-		let image = document.createElement("img");
-		image.src = './api/fetch/images/' + element.imageName;
-		image.alt = element.imageName;
-
-		let date = document.createElement('p');
-		date.textContent = element.date;
-		container.appendChild(title);
-		container.appendChild(description);
-		container.appendChild(date);
-		container.appendChild(image)
-		// append to fragement to avoid excessive repaints
-		fragment.appendChild(container);
+function displayEvents() {
+	fetch('api/fetch/events').then((res) => { return res.json() }).then((data) => {
+		data.message.forEach(element => {
+			addElement(element);
+		});
 	});
-	// append fragement to dom when all entries are ready
-	document.getElementById("events").appendChild(fragment);
-});
+}
+
+function searchElement() {
+	let searchQuery = search.value;
+
+	fetch('api/fetch/events?name=' + searchQuery).then((res) => { return res.json() }).then((data) => {
+		editContainer.innerHTML = "";
+		data.message.forEach(element => {
+			addElement(element);
+		});
+	});
+}
+
+function addElement(element) {
+	let container = `
+	<div class="editItem">
+		<img src="/js/acm.jpg" alt="acm" height="100" class="editImage" /> 
+		<div class="editText">
+			<h2>${element.name}</h2>
+			<p>${element.description}</p>
+			<p><b>${element.date}</b></p>
+			<button class="editBtn" onclick="openModal('edit')" >Edit</button>
+			<button class="editBtn deleteBtn" onclick="openModal('delete')" >Delete</button>
+		</div>
+	</div>
+`;
+	editContainer.innerHTML += container;
+}
+
+const search = document.getElementById('search');
+search.addEventListener('input', searchElement);

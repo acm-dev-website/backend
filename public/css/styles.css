@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 html, body {
     height: 100vh;
     width: 100vw;
     margin: 0;
+    font-family: 'Inter', sans-serif;
 }
 
 /* Some nice looking gradient background */
@@ -40,22 +43,4 @@ body {
 
 #image {
     border: none;
-}
-
-.styled-dropdown {
-    display: inline-block;
-    background-color: #333333;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 0;
-    margin-bottom: 20px;
-    text-decoration: underline;
-    text-align: center;
-    font-size: 25px;
-    font-family: inherit;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    color: white;
 }

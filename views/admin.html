@@ -6,17 +6,17 @@
     <title>Event Admin Panel - ACM</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/adminPanel.css">
+    <link rel="stylesheet" href="/css/edit.css">
 </head>
 <body>
     <main>
         <div class="container">
           <h1 class="title">Admin Panel</h1>
-          <select class="styled-dropdown" name="actions" id="actions">
+          <select class="styled-dropdown" name="actions" id="actions" onchange="toggleDiv()">
             <option value="create">Create New Event</option>
             <option value="edit">Edit Event</option>
-            <option value="delete">Delete Event</option>
           </select>
-          <div id="form_div">
+          <div id="create">
             <form class="form" id="event_form" action="/admin/submit" method="post" enctype="multipart/form-data">
               <label>Event Title</label>
               <input type="text" id="name" name="name" placeholder="Event Name">
@@ -31,26 +31,37 @@
               <input class="btn" type="submit" value="Submit" onclick="submitEvent(event)">
             </form>
           </div>
-          <button src="test.html">test button</button>
+          <div id="edit" class="hidden">
+            <div id="editContainer">
+              <input type="search" id="search" placeholder="Search for events here!">
+                <div id="itemContainer">
+                  <!-- this div is dynamically rendered with js -->
+                </div>
+            </div>
+          </div>
+          <div id="editModal" class="modal">
+            <div class="modal-content">
+              <span class="close" id="editClose">&times;</span>
+              <p>Edit modal!</p>
+            </div>
+          </div>
+          <div id="deleteModal" class="modal">
+            <div class="modal-content">
+              <span class="close" id="deleteClose">&times;</span>
+              <h1>Are you sure you want to delete this event?</h1>
+              <p id="deleteText">This is a destructive action, and cannot be reversed! 
+                Do you still want to proceed?
+              </p>
+              <div id="confirmButtons">
+                <button id="yesBtn">Yes</button>
+                <button id="noBtn" onclick="closeModal('delete')">No</button>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
-    <script src="js/script.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/editScript.js"></script>
+    <script src="/js/eventParse.js"></script>
 </body>
 </html>
-
-<!--   this html is migrated from jose's html file, i will implement it after a commit (must)
-  <div>
-        <h2>Delete Event</h2>
-        <form action="/deleteEvent" method="POST">
-            <div><strong>Select Event:
-                <select name="eventId" required>
-                     Populate this dropdown dynamically with existing events <- this is a comment
-                  </select>
-                </strong></div><br><br>
-    
-                <div>
-                    <button type="submit">Delete</button>
-                </div>
-            </form>
-        </div>
-      -->
