@@ -92,9 +92,9 @@ exports.deleteEvent = async (req,res)=>{
 
   const eventName = req.query.eventName; // Specify the name of the event to delete
   const currentEventImgName = req.query.imgName;
-  //console.log(req.query.eventName);
-  //console.log(req.query.imgName);
-  //console.log(`Deleting event with name: ${eventName}`);
+  // console.log(req.query.eventName);
+  // console.log(req.query.imgName);
+  // console.log(`Deleting event with name: ${eventName}`);
 
   try {
     const db = mongo_utils.get_client().db();
@@ -124,6 +124,4 @@ exports.deleteEvent = async (req,res)=>{
     res.status(500).json({ message: err.message });
     return;
   }
-
-  return;
 }
