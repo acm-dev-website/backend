@@ -1,7 +1,8 @@
-window.onload = displayEvents();
+window.onload = displayEvents;
 let editContainer = document.getElementById('itemContainer');
 
 function displayEvents() {
+
 	fetch('api/fetch/events').then((res) => { return res.json() }).then((data) => {
 		data.message.forEach(element => {
 			addElement(element);
@@ -23,7 +24,7 @@ function searchElement() {
 function addElement(element) {
 	let container = `
 	<div class="editItem">
-		<img src="/js/acm.jpg" alt="acm" height="100" class="editImage" /> 
+		<img src="http://localhost:3000/api/fetch/images/${element.imageName}" alt="acm" height="100" class="editImage" /> 
 		<div class="editText">
 			<h2>${element.name}</h2>
 			<p>${element.description}</p>

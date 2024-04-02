@@ -5,20 +5,18 @@ let deleteModal = document.getElementById('deleteModal');
 // Set up span elements for edit and delete modals
 let editSpan = document.getElementById("editClose");
 let deleteSpan = document.getElementById("deleteClose");
+let currentEventId;
 
   
 // Function to open the modals
-function openModal(modalType) {
+function openModal(modalType, elementId) {
     if(modalType === 'edit') {
         console.log("Edit Button clicked!");
         editModal.style.display = "block";
     } else if(modalType === 'delete') {
         console.log("Delete button clicked!");
-<<<<<<< Updated upstream
-=======
         console.log(elementId);
         currentEventId = elementId;
->>>>>>> Stashed changes
         deleteModal.style.display = "block";
     }
 }
