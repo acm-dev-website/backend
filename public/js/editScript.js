@@ -101,4 +101,10 @@ function toggleDiv() {
     }
 }
 
-window.onload = toggleDiv;
+document.addEventListener('DOMContentLoaded', function() {
+    toggleDiv();
+});
+
+window.onload = function() {
+    toggleDiv();
+}
