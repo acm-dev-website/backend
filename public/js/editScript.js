@@ -14,10 +14,45 @@ function openModal(modalType) {
         editModal.style.display = "block";
     } else if(modalType === 'delete') {
         console.log("Delete button clicked!");
+<<<<<<< Updated upstream
+=======
+        console.log(elementId);
+        currentEventId = elementId;
+>>>>>>> Stashed changes
         deleteModal.style.display = "block";
     }
 }
-      
+
+function deleteEvent() {
+    if (!currentEventId) {
+        console.error('No event ID to delete.');
+        return;
+    }
+
+    fetch(`/admin/delete?name=${currentEventId}`, {
+        method: 'DELETE',
+    })
+    .then((res) => {
+        if (res.ok) {
+            // Remove the event card from UI
+            const eventCard = document.querySelector(`.editItem[data-id="${currentEventId}"]`);
+            if (eventCard) {
+                eventCard.remove();
+            }
+            closeModal('delete');
+        } else {
+            throw new Error('Failed to delete event');
+        }
+    })
+    .catch((error) => {
+        console.error('Error deleting event:', error);
+        alert('Failed to delete event. Please try again.');
+    })
+    .finally(() => {
+        currentEventId = null; // Reset the currentEventId after deletion
+    });
+}
+
 // Function to close the modals
 function closeModal(modalType) {
     if(modalType === 'edit') {
