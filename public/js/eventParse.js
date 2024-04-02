@@ -1,4 +1,4 @@
-window.onload = displayEvents;
+window.onload = displayEvents();
 let editContainer = document.getElementById('itemContainer');
 
 function displayEvents() {

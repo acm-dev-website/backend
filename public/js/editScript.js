@@ -7,7 +7,7 @@ let editSpan = document.getElementById("editClose");
 let deleteSpan = document.getElementById("deleteClose");
 let currentEventId;
 
-let currentEventId = null;
+currentEventId = null;
 
 // Function to open the modals
 function openModal(modalType, eventId) {
@@ -103,6 +103,4 @@ function toggleDiv() {
     }
 }
 
-window.onload = () => {
-    toggleDiv();
-}
+window.onload = toggleDiv;
