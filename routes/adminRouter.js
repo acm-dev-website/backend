@@ -10,6 +10,6 @@ router.use('/submit', file_utils.upload.single('image'));
 
 router.get('/', render);
 router.post('/submit', create);
-router.post('/delete', deleteEvent);
+router.delete('/delete', deleteEvent);
 
 module.exports = router;

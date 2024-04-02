@@ -1,6 +1,8 @@
 const mongo_utils = require('../utils/mongo_utils');
 const path = require('path');
 
+//const ObjectId = require('mongodb').ObjectID;
+
 // Stuff for gridfsbucket, also set up multer as to use req.file.originalname
 const multer = require("multer");
 const { GridFSBucket, ObjectID } = require('mongodb');
@@ -61,17 +63,17 @@ exports.create = async (req, res)=>{
 
 // Delete event by name
 exports.deleteEvent = async (req,res)=>{
-  console.log('ass');
-  const eventId = req.query.id; // Specify the name of the event to delete
 
-  console.log(`Deleting event with name: ${eventId}`);
+  const eventName = req.query.eventName; // Specify the name of the event to delete
+  console.log(req.query.eventName);
+  console.log(`Deleting event with name: ${eventName}`);
 
   try {
     const db = mongo_utils.get_client().db();
     const collection = db.collection('events');
     
     // Delete the event by name
-    const result = await collection.deleteOne({ _id : eventId });
+    const result = await collection.deleteOne({ name : eventName });
     console.log(result);
 
     if (result.deletedCount === 1) {

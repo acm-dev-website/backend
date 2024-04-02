@@ -7,39 +7,44 @@ let editSpan = document.getElementById("editClose");
 let deleteSpan = document.getElementById("deleteClose");
 let currentEventId = null;
 
+let currentEventName = null;
+
 // Function to open the modals
-function openModal(modalType, eventId) {
-    if (modalType === 'edit') {
+function openModal(modalType, elementName) {
+    if(modalType === 'edit') {
         console.log("Edit Button clicked!");
+        
         editModal.style.display = "block";
     } else if (modalType === 'delete') {
         console.log("Delete button clicked!");
-        console.log(eventId);
-        currentEventId = eventId;
-        console.log(currentEventId);
+        console.log(elementName);
+        currentEventName = elementName;
         deleteModal.style.display = "block";
     }
 }
+      
 
 function delEvent() {
-    if (!currentEventId) {
+    if (!currentEventName) {
         console.error('No event ID to delete.');
         return;
     }
-
-    fetch(`/admin/delete?id=${currentEventId}`, {
+   
+    console.log(currentEventName);
+    fetch(`http://localhost:3009/admin/delete?eventName=${currentEventName}`, {
         method: 'DELETE',
+        //body: {name : currentEventName}
     })
     .then((res) => {
         if (res.ok) {
             // Remove the event card from UI
-            const eventCard = document.querySelector(`.editItem[data-id="${currentEventId}"]`);
+            const eventCard = document.querySelector(`.editItem[data-id="${currentEventName}"]`);
             if (eventCard) {
                 eventCard.remove();
             }
             closeModal('delete');
         } else {
-            throw new Error('Failed to delete event');
+            throw 'Failed to delete event';
         }
     })
     .catch((error) => {
