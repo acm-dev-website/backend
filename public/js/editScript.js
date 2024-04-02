@@ -5,9 +5,7 @@ let deleteModal = document.getElementById('deleteModal');
 // Set up span elements for edit and delete modals
 let editSpan = document.getElementById("editClose");
 let deleteSpan = document.getElementById("deleteClose");
-let currentEventId;
-
-currentEventId = null;
+let currentEventId = null;
 
 // Function to open the modals
 function openModal(modalType, eventId) {
