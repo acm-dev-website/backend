@@ -8,9 +8,10 @@ let deleteSpan = document.getElementById("deleteClose");
 let currentEventId = null;
 
 let currentEventName = null;
+let currentEventImgName = null;
 
 // Function to open the modals
-function openModal(modalType, elementName) {
+function openModal(modalType, elementName, elementImgName) {
     if(modalType === 'edit') {
         console.log("Edit Button clicked!");
         
@@ -19,6 +20,7 @@ function openModal(modalType, elementName) {
         console.log("Delete button clicked!");
         console.log(elementName);
         currentEventName = elementName;
+        currentEventImgName = elementImgName;
         deleteModal.style.display = "block";
     }
 }
@@ -31,7 +33,7 @@ function delEvent() {
     }
    
     console.log(currentEventName);
-    fetch(`http://localhost:3009/admin/delete?eventName=${currentEventName}`, {
+    fetch(`http://localhost:3009/admin/delete?eventName=${currentEventName}&imgName=${currentEventImgName}`, {
         method: 'DELETE',
         //body: {name : currentEventName}
     })

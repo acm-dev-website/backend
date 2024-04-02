@@ -29,8 +29,8 @@ function addElement(element) {
 			<h2>${element.name}</h2>
 			<p>${element.description}</p>
 			<p><b>${element.date}</b></p>
-			<button class="editBtn" onclick="openModal('edit', '${element.name}')" >Edit</button>
-			<button class="editBtn deleteBtn" onclick="openModal('delete', '${element.name}')" >Delete</button>
+			<button class="editBtn" onclick="openModal('edit', '${element.name}', '${element.imageName}')" >Edit</button>
+			<button class="editBtn deleteBtn" onclick="openModal('delete', '${element.name}', '${element.imageName}')" >Delete</button>
 		</div>
 	</div>
 `;

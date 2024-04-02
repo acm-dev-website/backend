@@ -65,18 +65,27 @@ exports.create = async (req, res)=>{
 exports.deleteEvent = async (req,res)=>{
 
   const eventName = req.query.eventName; // Specify the name of the event to delete
+  const currentEventImgName = req.query.imgName;
   console.log(req.query.eventName);
+  console.log(req.query.imgName);
   console.log(`Deleting event with name: ${eventName}`);
 
   try {
     const db = mongo_utils.get_client().db();
-    const collection = db.collection('events');
     
-    // Delete the event by name
+    const imgCollection = db.collection('images.files')
+    const imgId = await imgCollection.findOne({filename : currentEventImgName})._id;
+    const imgResult = await imgCollection.deleteOne({ filename : currentEventImgName });
+
+    const chunksCollection = db.collection('images.chunks')
+    const chunksResult = await chunksCollection.deleteMany({ files_id : imgId });
+
+    const collection = db.collection('events');
     const result = await collection.deleteOne({ name : eventName });
+    
     console.log(result);
 
-    if (result.deletedCount === 1) {
+    if (result.deletedCount === 1 && imgResult.deletedCount == 1) {
       // Event successfully deleted
       res.status(200).json({ message: 'Event deleted successfully' });
     } else {
