@@ -36,7 +36,7 @@ exports.login = async (req,res)=>{
     // Encrypt cookie
     const auth = cookieCrypt.encrypt((new Date()).toString());
     // Set cookie
-    res.cookie('auth',auth,{httpOnly:true});
+    res.cookie('auth', auth, { httpOnly: true });
   
     return res.redirect('/admin');
   }
