@@ -21,20 +21,34 @@ function searchElement() {
 	});
 }
 
+function randNum(max) {
+    return Math.floor(Math.random() * max) + 1;
+}
+
 function addElement(element) {
+	let time = convertTime(element.time);
+	let id = randNum(100000);
 	let container = `
-	<div class="editItem">
+	<div class="editItem" id="${id}">
 		<img src="http://localhost:3000/api/fetch/images/${element.imageName}" alt="acm" height="100" class="editImage" /> 
 		<div class="editText">
 			<h2>${element.name}</h2>
 			<p>${element.description}</p>
-			<p><b>${element.date}</b></p>
-			<button class="editBtn" onclick="openModal('edit', '${element.name}')" >Edit</button>
-			<button class="editBtn deleteBtn" onclick="openModal('delete', '${element.name}')" >Delete</button>
+			<p><b>${element.date}</b> at <b>${time}</b></p>
+			<button class="editBtn" onclick="openModal('edit', '${element.name}', '${id}')" >Edit</button>
+			<button class="editBtn deleteBtn" onclick="openModal('delete', '${element.name}', '${id}')" >Delete</button>
 		</div>
 	</div>
 `;
 	editContainer.innerHTML += container;
+}
+
+function convertTime(time24) {
+	const [hours, minutes] = time24.split(':').map(Number);
+	const period = hours < 12 ? 'AM' : 'PM';
+	const hours12 = hours % 12 || 12;
+
+	return `${hours12}:${minutes.toString().padStart(2, '0')} ${period}`;
 }
 
 const search = document.getElementById('search');

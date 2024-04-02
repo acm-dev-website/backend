@@ -24,9 +24,10 @@ exports.create = async (req, res)=>{
     const name = req.body.name.trim();
     const date = req.body.date;
     const desc = req.body.description.trim();
+    const time = req.body.time;
     const imageName = req.file.originalname;
 
-    if (!req.body.name || !req.body.date || !req.body.description) {
+    if (!req.body.name || !req.body.date || !req.body.description || !req.body.time) {
         res.status(400).redirect("/admin");
         return;
     }
@@ -35,6 +36,7 @@ exports.create = async (req, res)=>{
         name:name,
         date:date,
         description:desc,
+        time:time,
         imageName: imageName
     };
 
