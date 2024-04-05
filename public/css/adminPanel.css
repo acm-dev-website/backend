@@ -70,8 +70,20 @@ main {
     min-width: 30rem;
 }
 
+.time_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 /* bg color for input */
-#name, #date, #description, #time {
+#name, #date, #description, #start-time, #end-time {
     background-color: #595959;
     color: white;
+}
+
+#start-time, #end-time {
+  width: 2rem;
+  text-align: center;
 }

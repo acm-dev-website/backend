@@ -1,4 +1,5 @@
 const mongo_utils = require('../utils/mongo_utils');
+const calendar_utils = require('../utils/calendar_utils');
 const path = require('path');
 
 // Stuff for gridfsbucket, also set up multer as to use req.file.originalname
@@ -22,6 +23,8 @@ exports.create = async (req, res)=>{
     const name = req.body.name.trim();
     const date = req.body.date;
     const desc = req.body.description.trim();
+    const start = req.body.start_time;
+    const end = req.body.end_time;
     const imageName = req.file.originalname;
 
     if (!req.body.name || !req.body.date || !req.body.description) {
@@ -37,6 +40,7 @@ exports.create = async (req, res)=>{
     };
 
     // Send to DB
+    /*
     const db = mongo_utils.get_client().db();
     const collection = db.collection('events');
 
@@ -49,6 +53,19 @@ exports.create = async (req, res)=>{
     const bucket = new GridFSBucket(db, { bucketName: 'images' });
     const uploadStream = bucket.openUploadStream(req.file.originalname);
     uploadStream.end(req.file.buffer);
+
+    */
+
+    /* 
+        DOES NOT WORK (for now)
+        |
+        |
+        \/
+        
+    */    calendar_utils.addEvent(name, date, start, end, desc); /*<--- 
+        
+        Will work when the app is verified by Google's OAuth app verification.
+    */
 
     console.log(result);
     }
