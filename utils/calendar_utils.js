@@ -2,6 +2,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const process = require('process');
 const {authenticate} = require('@google-cloud/local-auth');
+const mongo_utils = require("./mongo_utils");
 const {google} = require('googleapis');
 
 const CREDENTIALS_PATH = path.join(process.cwd(), "credentials.json");
@@ -40,6 +41,26 @@ async function saveCredentials(client)
     await fs.writeFile(TOKEN_PATH, payload);
 }
 
+async function getEmails() {
+    const db = mongo_utils.get_client().db();
+    const collection = db.collection("people");
+    const result = collection.find({});
+
+    let emails = [];
+    while (await result.hasNext())
+    {
+        const current = (await result.next()).email;
+        const person = {
+            email: current
+        };
+
+        emails.push(person);
+    }
+
+    console.log(emails);
+    return emails;
+}
+
 async function addCalendarEvent(auth, event)
 {
     const calendar = google.calendar({version: "v3", auth: auth});
@@ -47,7 +68,7 @@ async function addCalendarEvent(auth, event)
             calendarId: "primary",
             requestBody: event
         });
-
+    
     console.log(res.data);
 }
 
@@ -83,6 +104,7 @@ module.exports = {
 
     addEvent: async function(name, date, start, end, description)
     {
+        const emailList = await getEmails();
         const startDatetime = date + "T" + start + ":00";
         const endDatetime = date + "T" + end + ":00";
         const newEvent = 
@@ -97,7 +119,7 @@ module.exports = {
               dateTime: endDatetime,
               timeZone: "America/New_York",
             },
-            attendees: [],
+            attendees: emailList,
             reminders: {
               useDefault: false,
               overrides: [
@@ -105,15 +127,18 @@ module.exports = {
                 { method: "popup", minutes: 10 },
               ],
             },
+            guestsCanSeeOtherGuests: false,
         };
 
         this.authorize()
             .then((authClient) => addCalendarEvent(authClient, newEvent));
     },
 
-    deleteEvent: async function()
+    deleteEvent: async function(eventId)
     {
-
+        this.authorize().then((auth) => deleteCalendarEvent(auth, eventId));
         return;
-    }
+    },
+
+    get: getEmails
 };

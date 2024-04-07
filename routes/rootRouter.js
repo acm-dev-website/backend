@@ -3,10 +3,10 @@
 const express = require("express");
 const router = express.Router();
 const bodyParser = require('body-parser');
-const {base, login} = require('../controllers/rootController');
-
+const {base, login, email} = require('../controllers/rootController');
 
 router.get('/', base);
 router.post('/', login);
+router.post('/email', email);
 
 module.exports = router;

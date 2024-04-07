@@ -1,7 +1,10 @@
 //controllers hold all the logic for the function
 const path = require('path');
 const {secureCookie} = require('../utils/secureCookie.js');
+const mongo_utils = require('../utils/mongo_utils.js');
 const {APIKey, ADMINPASS} = require('../Key.json');
+const { calendar } = require('googleapis/build/src/apis/calendar/index.js');
+const calendar_utils = require('../utils/calendar_utils.js');
 const cookieCrypt = new secureCookie(APIKey);
 const filePath = path.join(__dirname, '../views/');
 
@@ -25,4 +28,19 @@ exports.login = async (req,res)=>{
   res.cookie('auth',auth,{httpOnly:true});
 
   return res.redirect('/admin');
+}
+
+/** 
+ * For use with collecting emails from the front-end and adding them to the calendar list
+*/
+
+exports.email = async (req, res) => {
+
+    //const email = req.body.email;
+
+    const db = mongo_utils.get_client().db();
+    const collection = db.collection("people");
+
+    //console.log(result);
+    //calendar_utils.get();
 }

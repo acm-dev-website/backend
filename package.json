@@ -20,6 +20,8 @@
     "nodemon": "^3.1.0"
   },
   "devDependencies": {
-    "express": "^4.19.2"
+    "@google-cloud/local-auth": "^3.0.1",
+    "express": "^4.19.2",
+    "googleapis": "^134.0.0"
   }
 }
