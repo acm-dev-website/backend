@@ -1,6 +1,7 @@
 const mongo_utils = require('../utils/mongo_utils');
 
 //fetch/events [get]
+//fetchs events and allows all events to be fetched at once or by field
 exports.fetchEvent = async(req, res)=>{
     try{
         res.contentType = 'application/json';
@@ -40,9 +41,18 @@ exports.fetchEvent = async(req, res)=>{
 ///fetch/images/:img_name
 exports.fetchImage = async(req, res)=>{
     try{
-        const img_name = req.params.img_name;
+        //setup mongo config
+        const db = mongo_utils.get_client().db();
+        const collection = db.collection('images.files');
+        //fetch image from database
+        const result = await collection.findOne({filename:req.params.img_name});
+        if(result==null){
+            throw "image does not exist";
+        }
+        //pipe data to frontend
         const bucket = mongo_utils.get_bucket();
-        const downloadStream = bucket.openDownloadStreamByName(img_name);
+        const downloadStream = bucket.openDownloadStream(result._id);
+        
         downloadStream.pipe(res);
     }catch(e){
         console.log(e);

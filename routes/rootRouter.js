@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 const routes = require('../controllers/rootController');
 
-
+//routes for frontend
 router.get('/',routes.homePage);
 router.get('/workshops',routes.workshopPage);
 router.get('/events', routes.eventPage);

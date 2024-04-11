@@ -2,9 +2,9 @@
 const path = require('path');
 const {secureCookie} = require('../utils/secureCookie.js');
 const {APIKey, ADMINPASS} = require('../Key.json');
-const cookieCrypt = new secureCookie(APIKey);
 const filePath = path.join(__dirname, '../frontend/pages/');
 
+//logic for frontend
 exports.homePage = (req,res)=>{
     res.sendFile(filePath+'index/index.html');
 }

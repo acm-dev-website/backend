@@ -5,25 +5,66 @@ let deleteModal = document.getElementById('deleteModal');
 // Set up span elements for edit and delete modals
 let editSpan = document.getElementById("editClose");
 let deleteSpan = document.getElementById("deleteClose");
+let currentEventId = null;
 
-  
+let currentEventName = null;
+let currentEventImgName = null;
+
 // Function to open the modals
-function openModal(modalType) {
+function openModal(modalType, elementName, elementImgName) {
     if(modalType === 'edit') {
         console.log("Edit Button clicked!");
+        
         editModal.style.display = "block";
-    } else if(modalType === 'delete') {
+    } else if (modalType === 'delete') {
         console.log("Delete button clicked!");
+        console.log(elementName);
+        currentEventName = elementName;
+        currentEventImgName = elementImgName;
         deleteModal.style.display = "block";
     }
 }
       
+
+function delEvent() {
+    if (!currentEventName) {
+        console.error('No event ID to delete.');
+        return;
+    }
+   
+    console.log(currentEventName);
+    fetch(`http://localhost:3000/admin/delete?eventName=${currentEventName}&imgName=${currentEventImgName}`, {
+        method: 'DELETE',
+        //body: {name : currentEventName}
+    })
+    .then((res) => {
+        if (res.ok) {
+            // Remove the event card from UI
+            const eventCard = document.querySelector(`.editItem[data-id="${currentEventName}"]`);
+            if (eventCard) {
+                eventCard.remove();
+            }
+            closeModal('delete');
+        } else {
+            throw 'Failed to delete event';
+        }
+    })
+    .catch((error) => {
+        console.error('Error deleting event:', error);
+        alert('Failed to delete event. Please try again.');
+    })
+    .finally(() => {
+        currentEventId = null; // Reset the currentEventId after deletion
+    });
+}
+
 // Function to close the modals
 function closeModal(modalType) {
     if(modalType === 'edit') {
         editModal.style.display = "none";
     } else if (modalType === 'delete') {
         deleteModal.style.display = "none";
+        currentEventId = null;
     }
 }
   
@@ -67,6 +108,10 @@ function toggleDiv() {
     }
 }
 
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', function() {
+    toggleDiv();
+});
+
+window.onload = function() {
     toggleDiv();
 }

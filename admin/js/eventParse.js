@@ -23,13 +23,13 @@ function searchElement() {
 function addElement(element) {
 	let container = `
 	<div class="editItem">
-		<img src="/js/acm.jpg" alt="acm" height="100" class="editImage" /> 
+		<img src="api/fetch/images/${element.imageName}" alt="acm" height="100" class="editImage" /> 
 		<div class="editText">
 			<h2>${element.name}</h2>
 			<p>${element.description}</p>
 			<p><b>${element.date}</b></p>
 			<button class="editBtn" onclick="openModal('edit')" >Edit</button>
-			<button class="editBtn deleteBtn" onclick="openModal('delete')" >Delete</button>
+			<button class="editBtn deleteBtn" onclick="openModal('delete', '${element.name}', '${element.imageName}')" >Delete</button
 		</div>
 	</div>
 `;

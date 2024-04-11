@@ -67,10 +67,6 @@ exports.create = async (req, res)=>{
 
     const result = await collection.insertOne(Event);
 
-
-    //// OLD METHOD
-    // mongo_utils.upload_file("./images/" + imageName);
-    //Use of bucket and multer
     const bucket = new GridFSBucket(db, { bucketName: 'images' });
     const uploadStream = bucket.openUploadStream(req.file.originalname);
     uploadStream.end(req.file.buffer);
@@ -86,27 +82,34 @@ exports.create = async (req, res)=>{
 
 // Delete event by name
 exports.deleteEvent = async (req,res)=>{
-  const eventName = req.query.name; // Specify the name of the event to delete
+    const eventName = req.query.eventName; 
+    const currentEventImgName = req.query.imgName;
+  
+    try {
+        const db = mongo_utils.get_client().db();
+        
+        //fetches image data and deletes
+        const imgCollection = db.collection('images.files')
+        const imgId = await imgCollection.findOne({filename : currentEventImgName});
+        const imgResult = await imgCollection.deleteOne({ filename : currentEventImgName });
+            
+        //fetches chunks and deletes
+        const chunksCollection = db.collection('images.chunks')
+        const chunksResult = await chunksCollection.deleteMany({ files_id : imgId._id });
+            
+        //fetches events and eletes
+        const collection = db.collection('events');
+        const result = await collection.deleteOne({ name : eventName });
 
-  console.log(`Deleting event with name: ${eventName}`);
-
-  try {
-    const db = mongo_utils.get_client().db();
-    const collection = db.collection('events');
-    
-    // Delete the event by name
-    const result = await collection.deleteOne({ name: eventName });
-    console.log(result);
-
-    if (result.deletedCount === 1) {
-      // Event successfully deleted
-      res.status(200).json({ message: 'Event deleted successfully' });
-    } else {
-      // Event not found
-      res.status(404).json({ message: 'Event not found' });
+        if (result.deletedCount >= 1 && imgResult.deletedCount >= 1 && chunksResult.deletedCount >= 1){
+            res.status(200).json({ message: 'Event deleted successfully' });
+            return;
+        }else {
+            res.status(404).json({ message: ':(' });
+            return;
+        }
+        }catch (err) {
+            res.status(500).json({ message: err.message });
+            return;
     }
-  } catch (err) {
-    // Error handling
-    res.status(500).json({ message: err.message });
-  }
 }
