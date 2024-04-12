@@ -12,6 +12,11 @@ let currentEventTime = null;
 let currentEventDesc= null;
 let currentEventImgName = null;
 
+let editDelSubmit = document.getElementById("ebtn");
+
+// editDelSubmit.addEventListener("click", function(event){
+//     delEvent(event);
+// });
 
 function initEditPlaceHolders(){
     var editableInputs = document.getElementsByClassName("edit-placeholder");
@@ -34,7 +39,6 @@ function initEditPlaceHolders(){
 // Function to open the modals
 function openDelModal(elemName, elemImgName) {
     console.log("Delete button clicked!");
-    console.log(elemName);
     currentEventName = elemName;
     currentEventImgName = elemImgName;
     deleteModal.style.display = "block";
@@ -43,8 +47,7 @@ function openDelModal(elemName, elemImgName) {
 // ADD TIME
 function openEditModal(elemName, elemDate, elemDesc, elemImgName) {
     console.log("Edit Button clicked!");
-    console.log(elemImgName);
-    console.log(elemName);
+    console.log(111);
     currentEventName = elemName;
     currentEventDate = elemDate;
     //currentEventTime = elemTime;
@@ -55,14 +58,13 @@ function openEditModal(elemName, elemDate, elemDesc, elemImgName) {
 }
       
 
-function delEvent() {
-    console.log(currentEventImgName);
+function delEvent(e) {
+    e.preventDefault();
     if (!currentEventName) {
         console.error('No event ID to delete.');
         return;
     }
    
-    console.log(currentEventName);
     fetch(`http://localhost:3000/admin/delete?eventName=${currentEventName}&imgName=${currentEventImgName}`, {
         method: 'DELETE',
         //body: {name : currentEventName}
