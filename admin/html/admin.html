@@ -28,7 +28,7 @@
               <textarea id="description" name="description" placeholder="Description"></textarea>
               <label>Event Image</label>
               <input type="file" id="image" name="image" placeholder="Event Image">
-              <input class="btn" type="submit" value="Submit" onclick="submitEvent(event)">
+              <!-- <input class="btn" type="submit" value="Submit" onclick="submitEvent(event)"> -->
             </form>
           </div>
           <div id="edit" class="hidden">
@@ -42,7 +42,19 @@
           <div id="editModal" class="modal">
             <div class="modal-content">
               <span class="close" id="editClose">&times;</span>
-              <p>Edit modal!</p>
+              <form class="form" id="edit_event_form" action="/admin/submit" method="post" enctype="multipart/form-data">
+                <label>Event Title</label>
+                <input type="text" id="eName" name="name" class="edit-placeholder" data-placeholder="Event Name" value="">
+                <label>Event Date</label>
+                <input type="date" id="eDate" name="date" class="edit-placeholder" data-placeholder="Event Date" value="">
+                <!-- <label>Event Time</label>
+                <input type="time" id="timeEdit" name="timeEdit" class="edit-placeholder" data-placeholder="Event Time" value="""> -->
+                <label>Event Description</label>
+                <textarea id="eDescription" name="description" class="edit-placeholder" data-placeholder="Event Desc" value=""></textarea>
+                <label>Event Image</label>
+                <input type="file" id="eImage" name="image" placeholder="Event Image">
+                <input class="btn" type="submit" value="Submit" onclick="">
+              </form>
             </div>
           </div>
           <div id="deleteModal" class="modal">
@@ -60,7 +72,7 @@
           </div>
         </div>
       </main>
-    <script src="/js/script.js"></script>
+    <!-- <script src="/js/script.js"></script> -->
     <script src="/js/editScript.js"></script>
     <script src="/js/eventParse.js"></script>
 </body>

@@ -5,28 +5,58 @@ let deleteModal = document.getElementById('deleteModal');
 // Set up span elements for edit and delete modals
 let editSpan = document.getElementById("editClose");
 let deleteSpan = document.getElementById("deleteClose");
-let currentEventId = null;
 
 let currentEventName = null;
+let currentEventDate = null;
+let currentEventTime = null;
+let currentEventDesc= null;
 let currentEventImgName = null;
 
-// Function to open the modals
-function openModal(modalType, elementName, elementImgName) {
-    if(modalType === 'edit') {
-        console.log("Edit Button clicked!");
-        
-        editModal.style.display = "block";
-    } else if (modalType === 'delete') {
-        console.log("Delete button clicked!");
-        console.log(elementName);
-        currentEventName = elementName;
-        currentEventImgName = elementImgName;
-        deleteModal.style.display = "block";
+
+function initEditPlaceHolders(){
+    var editableInputs = document.getElementsByClassName("edit-placeholder");
+
+    for (var i = 0; i < editableInputs.length; i++) {
+        var field = editableInputs[i];
+
+        if (field.name === "name"){
+            field.value = currentEventName;
+        } else if (field.name === "description"){
+            field.value = currentEventDesc;
+        } else if (field.name === "date"){
+            field.value = currentEventDate;
+        } else if (field.name === "time"){
+            field.value = currentEventTime;
+        }
     }
+}
+
+// Function to open the modals
+function openDelModal(elemName, elemImgName) {
+    console.log("Delete button clicked!");
+    console.log(elemName);
+    currentEventName = elemName;
+    currentEventImgName = elemImgName;
+    deleteModal.style.display = "block";
+}
+
+// ADD TIME
+function openEditModal(elemName, elemDate, elemDesc, elemImgName) {
+    console.log("Edit Button clicked!");
+    console.log(elemImgName);
+    console.log(elemName);
+    currentEventName = elemName;
+    currentEventDate = elemDate;
+    //currentEventTime = elemTime;
+    currentEventDesc= elemDesc;
+    currentEventImgName = elemImgName;
+    initEditPlaceHolders();
+    editModal.style.display = "block";   
 }
       
 
 function delEvent() {
+    console.log(currentEventImgName);
     if (!currentEventName) {
         console.error('No event ID to delete.');
         return;
@@ -54,17 +84,28 @@ function delEvent() {
         alert('Failed to delete event. Please try again.');
     })
     .finally(() => {
-        currentEventId = null; // Reset the currentEventId after deletion
+        currentEventId = null;
+        currentEventName = null;
+        currentEventDate = null;
+        //currentEventTime = null;
+        currentEventDesc= null;
+        currentEventImgName = null;
     });
 }
 
 // Function to close the modals
 function closeModal(modalType) {
-    if(modalType === 'edit') {
+    if (modalType === 'edit'){
         editModal.style.display = "none";
-    } else if (modalType === 'delete') {
+        currentEventName = null;
+        currentEventDate = null;
+        //currentEventTime = null;
+        currentEventDesc= null;
+        currentEventImgName = null;
+    } else if (modalType === 'delete'){
         deleteModal.style.display = "none";
-        currentEventId = null;
+        currentEventName = null;
+        currentEventImgName = null;
     }
 }
   
@@ -79,9 +120,9 @@ deleteSpan.onclick = () => {
     
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-    if (event.target == editModal) {
+    if (event.target == editModal){
         closeModal('edit');
-    } else if (event.target == deleteModal) {
+    } else if (event.target == deleteModal){
         closeModal('delete');
     }
 };
@@ -110,8 +151,9 @@ function toggleDiv() {
 
 document.addEventListener('DOMContentLoaded', function() {
     toggleDiv();
+
 });
 
-window.onload = function() {
+window.onload = function(){
     toggleDiv();
 }

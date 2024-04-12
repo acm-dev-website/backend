@@ -38,46 +38,46 @@ exports.login = async (req,res)=>{
     res.cookie('auth',auth,{httpOnly:true});
   
     return res.redirect('/admin');
-  }
+}
   
 
 exports.create = async (req, res)=>{
-  console.log(req.body);
-  try{
-    const name = req.body.name.trim();
-    const date = req.body.date;
-    const desc = req.body.description.trim();
-    const imageName = req.file.originalname;
+//   console.log(req.body);
+//   try{
+//     const name = req.body.name.trim();
+//     const date = req.body.date;
+//     const desc = req.body.description.trim();
+//     const imageName = req.file.originalname;
+    
+//     if (!req.body.name || !req.body.date || !req.body.description) {
+//         res.status(400).redirect("/admin");
+//         return;
+//     }
 
-    if (!req.body.name || !req.body.date || !req.body.description) {
-        res.status(400).redirect("/admin");
-        return;
-    }
+//     const Event = {
+//         name:name,
+//         date:date,
+//         description:desc,
+//         imageName: imageName
+//     };
 
-    const Event = {
-        name:name,
-        date:date,
-        description:desc,
-        imageName: imageName
-    };
+//     // Send to DB
+//     const db = mongo_utils.get_client().db();
+//     const collection = db.collection('events');
 
-    // Send to DB
-    const db = mongo_utils.get_client().db();
-    const collection = db.collection('events');
+//     const result = await collection.insertOne(Event);
 
-    const result = await collection.insertOne(Event);
+//     const bucket = new GridFSBucket(db, { bucketName: 'images' });
+//     const uploadStream = bucket.openUploadStream(req.file.originalname);
+//     uploadStream.end(req.file.buffer);
 
-    const bucket = new GridFSBucket(db, { bucketName: 'images' });
-    const uploadStream = bucket.openUploadStream(req.file.originalname);
-    uploadStream.end(req.file.buffer);
-
-    console.log(result);
-    }
-    catch(err) {
-        res.status(400).json({message: err.message});
-        return;
-    }
-    res.redirect('/admin');
+    
+//     }
+//     catch(err) {
+//         res.status(400).json({message: err.message});
+//         return;
+//     }
+//     res.redirect('/admin');
 }
 
 // Delete event by name

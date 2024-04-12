@@ -46,6 +46,7 @@ exports.fetchImage = async(req, res)=>{
         const collection = db.collection('images.files');
         //fetch image from database
         const result = await collection.findOne({filename:req.params.img_name});
+        
         if(result==null){
             throw "image does not exist";
         }
