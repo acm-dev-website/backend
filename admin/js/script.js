@@ -4,6 +4,9 @@ let currentEventTime = null;
 let currentEventDesc= null;
 let currentEventImgName = null;
 let currentEventId = null;
+let currentEventType = null;
+let currentEventLeader = null;
+let currentEventLocation = null;
 
 function initEditPlaceHolders(){
     var editableInputs = document.getElementsByClassName("edit-placeholder");
@@ -19,7 +22,13 @@ function initEditPlaceHolders(){
             field.value = currentEventDate;
         } else if (field.name === "time"){
             field.value = currentEventTime;
-        }
+        } else if (field.name === "type"){
+            field.value = currentEventType;
+        } else if (field.name === "location"){
+            field.value = currentEventLocation;
+        } else if (field.name === "leader"){
+            field.value = currentEventLeader;
+        } 
     }
 }
 
@@ -32,30 +41,31 @@ function openDelModal(elemName, elemImgName, elemId) {
     deleteModal.style.display = "block";
 }
 
-// ADD TIME
-function openEditModal(elemName, elemDate, elemDesc, elemImgName, elemId) {
+
+function openEditModal(elemName, elemDate, elemTime, elemDesc, elemImgName, elemId, elemType, elemLeader, elemLocation) {
     console.log("Edit Button clicked!");
     currentEventName = elemName;
     currentEventDate = elemDate;
-    //currentEventTime = elemTime;
+    currentEventTime = elemTime;
     currentEventDesc= elemDesc;
     currentEventImgName = elemImgName;
     currentEventId = elemId;
+    currentEventType = elemType;
+    currentEventLeader = elemLeader;
+    currentEventLocation = elemLocation;
     initEditPlaceHolders();
     editModal.style.display = "block";   
 }
       
 
 function delEvent() {
-    // e.preventDefault();
-    if (!currentEventName) {
+    if (!currentEventName){
         console.error('No event ID to delete.');
         return;
     }
    
     fetch(`admin/delete?eventName=${currentEventName}&imgName=${currentEventImgName}`, {
         method: 'DELETE',
-        //body: {name : currentEventName}
     })
     .then((res) => {
         if (res.ok) {
@@ -77,9 +87,12 @@ function delEvent() {
         currentEventId = null;
         currentEventName = null;
         currentEventDate = null;
-        //currentEventTime = null;
+        currentEventTime = null;
         currentEventDesc= null;
         currentEventImgName = null;
+        currentEventType = null;
+        currentEventLeader = null;
+        currentEventLocation = null;
     });
 }
 
@@ -87,12 +100,15 @@ function delEvent() {
 function closeModal(modalType) {
     if (modalType === 'edit'){
         editModal.style.display = "none";
+        currentEventId = null;
         currentEventName = null;
         currentEventDate = null;
-        currentEventId = null;
-        //currentEventTime = null;
+        currentEventTime = null;
         currentEventDesc= null;
         currentEventImgName = null;
+        currentEventType = null;
+        currentEventLeader = null;
+        currentEventLocation = null;
     } else if (modalType === 'delete'){
         deleteModal.style.display = "none";
         currentEventName = null;
@@ -133,6 +149,10 @@ function submitEvent(e) {
     let editFlag = 0;
     let name = document.getElementById("name").value.trim();
     let date = document.getElementById("date").value;
+    let time = document.getElementById("time").value;
+    let type = document.getElementById("type").value.trim();
+    let leader = document.getElementById("leader").value.trim();
+    let location = document.getElementById("location").value.trim();
     let description = document.getElementById("description").value.trim();
     let imageInput = document.getElementById("image");
     let imageFile = imageInput.files[0]; // Get the selected image file
@@ -140,13 +160,17 @@ function submitEvent(e) {
     if (!name){
         name = document.getElementById("eName").value.trim();
         date = document.getElementById("eDate").value;
+        time = document.getElementById("eTime").value;
+        type = document.getElementById("eType").value.trim();
+        leader = document.getElementById("eLeader").value.trim();
+        location = document.getElementById("eLocation").value.trim();
         description = document.getElementById("eDescription").value.trim();
         imageInput = document.getElementById("eImage");
         imageFile = imageInput.files[0];
         editFlag = 1;
     }
 
-    if (!name || !date || !description) {
+    if (!name || !date || !description || !leader || !location || !imageFile || !imageInput || !type || !time){
         alert("Please fill out all fields before submitting!");
         return;
     }
@@ -154,8 +178,12 @@ function submitEvent(e) {
     let formData = new FormData();
     formData.append("name", name);
     formData.append("date", date);
+    formData.append("time", time);
     formData.append("description", description);
     formData.append("image", imageFile);
+    formData.append("leader",leader);
+    formData.append("type",type);
+    formData.append("location",location);
 
     alert("Event Added!");
 

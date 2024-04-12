@@ -20,12 +20,18 @@
             <form class="form" id="event_form" action="/admin/submit" method="post" enctype="multipart/form-data">
               <label>Event Title</label>
               <input type="text" id="name" name="name" placeholder="Event Name">
+              <label>Event Type</label>
+              <input type="text" id="type" name="type" placeholder="Event Type">
               <label>Event Date</label>
               <input type="date" id="date" name="date" placeholder="Event Date">
               <label>Event Time</label>
               <input type="time" id="time" name="time" placeholder="Event Time">
               <label>Event Description</label>
               <textarea id="description" name="description" placeholder="Description"></textarea>
+              <label>Event Leader</label>
+              <input type="text" id="leader" name="leader" placeholder="Event Leader">
+              <label>Event Location</label>
+              <input type="text" id="location" name="location" placeholder="Event Location">
               <label>Event Image</label>
               <input type="file" id="image" name="image" placeholder="Event Image">
               <input class="btn" type="submit" value="Submit" onclick="submitEvent(event)">
@@ -46,10 +52,16 @@
               <form class="form" id="edit_event_form" action="/admin/submit" method="post" enctype="multipart/form-data">
                 <label>Event Title</label>
                 <input type="text" id="eName" name="name" class="edit-placeholder" data-placeholder="Event Name" value="">
+                <label>Event Type</label>
+                <input type="text" id="eType" name="type" class="edit-placeholder" data-placeholder="Event Type" value="">
                 <label>Event Date</label>
                 <input type="date" id="eDate" name="date" class="edit-placeholder" data-placeholder="Event Date" value="">
-                <!-- <label>Event Time</label>
-                <input type="time" id="timeEdit" name="timeEdit" class="edit-placeholder" data-placeholder="Event Time" value="""> -->
+                <label>Event Time</label>
+                <input type="time" id="eTime" name="time" class="edit-placeholder" data-placeholder="Event Time" value="">
+                <label>Event Leader</label>
+                <input type="text" id="eLeader" name="leader" class="edit-placeholder" data-placeholder="Event Leader" value="">
+                <label>Event Location</label>
+                <input type="text" id="eLocation" name="location" class="edit-placeholder" data-placeholder="Event Location" value="">
                 <label>Event Description</label>
                 <textarea id="eDescription" name="description" class="edit-placeholder" data-placeholder="Event Desc" value=""></textarea>
                 <label>Event Image</label>

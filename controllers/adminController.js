@@ -47,6 +47,11 @@ exports.create = async (req, res)=>{
     const name = req.body.name.trim();
     const date = req.body.date;
     const desc = req.body.description.trim();
+    const time = req.body.time;
+    const type = req.body.type;
+    const location = req.body.location.trim();
+    const leader = req.body.leader.trim();
+    
     const imageName = req.file.originalname;
     
     if (!req.body.name || !req.body.date || !req.body.description) {
@@ -58,6 +63,10 @@ exports.create = async (req, res)=>{
         name:name,
         date:date,
         description:desc,
+        time:time,
+        type:type,
+        location:location,
+        leader:leader,
         imageName: imageName
     };
 

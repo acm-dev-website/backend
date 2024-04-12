@@ -33,8 +33,9 @@ function addElement(element) {
 			<h2>${element.name}</h2>
 			<p>${element.description}</p>
 			<p><b>${element.date}</b></p>
-			<button class="editBtn" onclick="openEditModal('${element.name}', '${element.date}', 
-														   '${element.description}', '${element.imageName}', '${id}')" >Edit</button>
+			<button class="editBtn" onclick="openEditModal('${element.name}', '${element.date}', '${element.time}', 
+															'${element.description}', '${element.imageName}', '${id}',
+															'${element.type}',  '${element.leader}', '${element.location}')" >Edit</button>
 			<button class="editBtn deleteBtn" onclick="openDelModal('${element.name}', '${element.imageName}', '${id}')" >Delete</button
 		</div>
 	</div>
