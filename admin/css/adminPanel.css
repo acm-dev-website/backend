@@ -73,7 +73,8 @@ main {
 }
 
 /* bg color for input */
-#name, #date, #description, #time, #editName, #editDate, #editDesc{
+#name, #date, #description, #time, #type, #leader, #location, 
+#eName, #eDate, #eDescription, #eTime, #eType, #eLeader, #eLocation{
     background-color: #595959;
     color: white;
 }
