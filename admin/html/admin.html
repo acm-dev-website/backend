@@ -35,7 +35,7 @@
             <div id="editContainer">
               <input type="search" id="search" placeholder="Search for events here!">
                 <div id="itemContainer">
-                  <!-- this div is dynamically rendered with js -->
+                  <!-- this div is dynamically rendered with js. refer to eventParse.js -->
                 </div>
             </div>
           </div>
@@ -54,7 +54,7 @@
                 <textarea id="eDescription" name="description" class="edit-placeholder" data-placeholder="Event Desc" value=""></textarea>
                 <label>Event Image</label>
                 <input type="file" id="eImage" name="image" placeholder="Event Image">
-                <input id="ebtn" class="btn" type="submit" value="Submit" onclick="delEvent(event)">
+                <input id="ebtn" class="btn" type="submit" value="Submit" onclick="delEvent()">
               </form>
             </div>
           </div>
@@ -66,7 +66,7 @@
                 Do you still want to proceed?
               </p>
               <div id="confirmButtons">
-                <button id="yesBtn" onclick="delEvent(event)">Yes</button>
+                <button id="yesBtn" onclick="delEvent()">Yes</button>
                 <button id="noBtn" onclick="closeModal('delete')">No</button>
               </div>
             </div>
@@ -74,7 +74,6 @@
         </div>
       </main>
     <script src="/js/script.js"></script>
-    <script src="/js/editScript.js"></script>
     <script src="/js/eventParse.js"></script>
 </body>
 </html>

@@ -23,7 +23,7 @@ main {
 /* Give the background a little spice (credit to zhi)*/
 .container {
     margin: 20px;
-    padding-bottom: 30px;
+    padding: 30px;
     min-width: 50%;
     max-width: 95%;
     min-height: 50%;

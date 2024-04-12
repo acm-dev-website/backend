@@ -20,17 +20,22 @@ function searchElement() {
 	});
 }
 
+function randNum(max) {
+	return Math.floor(Math.random() * max) + 1;
+}
+
 function addElement(element) {
+	let id = randNum(100000);
 	let container = `
-	<div class="editItem">
-		<img src="api/fetch/images/${element.imageName}" alt="" height="100" class="editImage" /> 
+	<div class="editItem" id=${id}>
+		<img src="api/fetch/images/${element.imageName}" height="100" class="editImage" /> 
 		<div class="editText">
 			<h2>${element.name}</h2>
 			<p>${element.description}</p>
 			<p><b>${element.date}</b></p>
 			<button class="editBtn" onclick="openEditModal('${element.name}', '${element.date}', 
-														   '${element.description}', '${element.imageName}')" >Edit</button>
-			<button class="editBtn deleteBtn" onclick="openDelModal('${element.name}', '${element.imageName}')" >Delete</button
+														   '${element.description}', '${element.imageName}', '${id}')" >Edit</button>
+			<button class="editBtn deleteBtn" onclick="openDelModal('${element.name}', '${element.imageName}', '${id}')" >Delete</button
 		</div>
 	</div>
 `;
