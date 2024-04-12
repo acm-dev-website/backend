@@ -44,9 +44,14 @@ exports.login = async (req,res)=>{
 exports.create = async (req, res)=>{
   console.log(req.body);
   try{
+    console.log(req.body);
     const name = req.body.name.trim();
     const date = req.body.date;
     const desc = req.body.description.trim();
+    const leader = req.body.leader;
+    const type = req.body.type;
+    const time = req.body.time;
+    const location = req.body.location;
     const imageName = req.file.originalname;
 
     if (!req.body.name || !req.body.date || !req.body.description) {
@@ -57,6 +62,10 @@ exports.create = async (req, res)=>{
     const Event = {
         name:name,
         date:date,
+        leader:leader,
+        type:type,
+        time:time,
+        location:location,
         description:desc,
         imageName: imageName
     };

@@ -20,6 +20,18 @@
             <form class="form" id="event_form" action="/admin/submit" method="post" enctype="multipart/form-data">
               <label>Event Title</label>
               <input type="text" id="name" name="name" placeholder="Event Name">
+              <label>Event Type</label>
+              <br>
+              <select id="type" name="type">
+                <option value="event">event</option> 
+                <option value="workshop">workshop</option>
+                <option value="project">project</option>
+              </select>
+              <br>
+              <label>Event Leader</label>
+              <input type="text" id="leader" name="leader" placeholder="Event Leader">
+              <label>Location</label>
+              <input type="text" id="location" name="location" placeholder="location">
               <label>Event Date</label>
               <input type="date" id="date" name="date" placeholder="Event Date">
               <label>Event Time</label>

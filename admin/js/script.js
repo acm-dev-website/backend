@@ -7,6 +7,9 @@ function submitEvent(e) {
 
     let name = document.getElementById("name").value.trim();
     let date = document.getElementById("date").value;
+    let type = document.getElementById("type").value.trim();
+    let leader = document.getElementById("leader").value.trim();
+    let location = document.getElementById("location").value.trim();
     let description = document.getElementById("description").value.trim();
     let imageInput = document.getElementById("image");
     let imageFile = imageInput.files[0]; // Get the selected image file
@@ -22,6 +25,9 @@ function submitEvent(e) {
     formData.append("date", date);
     formData.append("description", description);
     formData.append("image", imageFile);
+    formData.append("leader",leader);
+    formData.append("type",type);
+    formData.append("location",location);
 
     alert("Event Added!");
 

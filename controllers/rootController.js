@@ -1,7 +1,5 @@
 //controllers hold all the logic for the function
 const path = require('path');
-const {secureCookie} = require('../utils/secureCookie.js');
-const {APIKey, ADMINPASS} = require('../Key.json');
 const filePath = path.join(__dirname, '../frontend/pages/');
 
 //logic for frontend
