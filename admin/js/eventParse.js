@@ -23,7 +23,7 @@ function searchElement() {
 function addElement(element) {
 	let container = `
 	<div class="editItem">
-		<img src="api/fetch/images/${element.imageName}" alt="acm" height="100" class="editImage" /> 
+		<img src="api/fetch/images/${element.imageName}" alt="" height="100" class="editImage" /> 
 		<div class="editText">
 			<h2>${element.name}</h2>
 			<p>${element.description}</p>

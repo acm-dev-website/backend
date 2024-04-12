@@ -3,13 +3,6 @@
 * @param {Event} e
  */
 
-let editSubmit = document.getElementById("ebtn");
-
-editSubmit.addEventListener("click", function(event){
-    submitEvent(event);
-});
-
-
 function submitEvent(e) {
     e.preventDefault();
 
@@ -49,7 +42,10 @@ function submitEvent(e) {
     } else {
         document.getElementById("event_form").submit();
     }
-    
-
-
 }
+
+let editSubmit = document.getElementById("ebtn");
+
+editSubmit.addEventListener("click", function(event){
+    submitEvent(event);
+});

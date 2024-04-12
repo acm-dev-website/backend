@@ -12,12 +12,6 @@ let currentEventTime = null;
 let currentEventDesc= null;
 let currentEventImgName = null;
 
-let editDelSubmit = document.getElementById("ebtn");
-
-// editDelSubmit.addEventListener("click", function(event){
-//     delEvent(event);
-// });
-
 function initEditPlaceHolders(){
     var editableInputs = document.getElementsByClassName("edit-placeholder");
 
@@ -151,9 +145,14 @@ function toggleDiv() {
     }
 }
 
+let editDelSubmit = document.getElementById("ebtn");
+
+editDelSubmit.addEventListener("click", function(event){
+    delEvent(event);
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     toggleDiv();
-
 });
 
 window.onload = function(){
