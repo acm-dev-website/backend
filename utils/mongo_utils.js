@@ -2,9 +2,10 @@ const MongoClient = require("mongodb").MongoClient;
 const GridFSBucket = require("mongodb").GridFSBucket;
 const fs = require("fs");
 const file_utils = require("./file_utils");
+const dotenv = require('dotenv');
 
-const {APIKey} = require('../Key.json');
-const url = `mongodb+srv://developer:${APIKey}@cluster0.4ztfnxn.mongodb.net/?retryWrites=true&w=majority`;
+dotenv.config();
+const url = `mongodb+srv://developer:${process.env.APIKey}@cluster0.4ztfnxn.mongodb.net/?retryWrites=true&w=majority`;
 
 var _client;
 var _bucket;

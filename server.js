@@ -4,7 +4,10 @@ const bodyParser = require('body-parser');
 const mongo_utils = require('./utils/mongo_utils');
 const cookieParser = require('cookie-parser');
 
-const {PORT} = require('./Key.json');
+const dotenv = require('dotenv');
+
+dotenv.config();
+const PORT = process.env.PORT;
 
 app.use(cookieParser());
 app.use(express.static("frontend")); //iamges & fonts
@@ -26,7 +29,6 @@ app.use('/api', apiRoute);
 
 async function startUp(){
     await mongo_utils.connect_to_server();
-
     app.listen(PORT, ()=>{
         console.log("Server listening on port "+PORT);
         console.log(`http://localhost:${PORT}`)

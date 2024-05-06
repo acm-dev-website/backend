@@ -6,8 +6,13 @@ const multer = require("multer");
 const { GridFSBucket, ObjectID } = require('mongodb');
 const storage = multer.memoryStorage();
 
+const dotenv = require('dotenv');
+
+dotenv.config();
+const APIKey = process.env.APIKey;
+const ADMINPASS = process.env.ADMINPASS;
+
 const filePath = path.join(__dirname, '../admin/html/');
-const {APIKey, ADMINPASS} = require('../Key.json');
 const {secureCookie} = require('../utils/secureCookie');
 const cookieCrypt = new secureCookie(APIKey);
 

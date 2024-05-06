@@ -1,6 +1,10 @@
 const crypto = require("crypto");
 
-const {APIKey} = require('../Key.json');
+const dotenv = require('dotenv');
+
+dotenv.config();
+const APIKey = process.env.APIKey;
+
 class secureCookie {
     constructor(key) {
         // Digest key as sha-512 hash
