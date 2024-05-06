@@ -38,7 +38,7 @@ exports.login = async (req,res)=>{
     res.cookie('auth',auth,{httpOnly:true});
   
     return res.redirect('/admin');
-  }
+}
   
 
 exports.create = async (req, res)=>{
@@ -48,12 +48,13 @@ exports.create = async (req, res)=>{
     const name = req.body.name.trim();
     const date = req.body.date;
     const desc = req.body.description.trim();
-    const leader = req.body.leader;
-    const type = req.body.type;
     const time = req.body.time;
-    const location = req.body.location;
+    const type = req.body.type;
+    const location = req.body.location.trim();
+    const leader = req.body.leader.trim();
+    
     const imageName = req.file.originalname;
-
+    
     if (!req.body.name || !req.body.date || !req.body.description) {
         res.status(400).redirect("/admin");
         return;
@@ -67,6 +68,10 @@ exports.create = async (req, res)=>{
         time:time,
         location:location,
         description:desc,
+        time:time,
+        type:type,
+        location:location,
+        leader:leader,
         imageName: imageName
     };
 
@@ -80,7 +85,7 @@ exports.create = async (req, res)=>{
     const uploadStream = bucket.openUploadStream(req.file.originalname);
     uploadStream.end(req.file.buffer);
 
-    console.log(result);
+    
     }
     catch(err) {
         res.status(400).json({message: err.message});
@@ -93,6 +98,9 @@ exports.create = async (req, res)=>{
 exports.deleteEvent = async (req,res)=>{
     const eventName = req.query.eventName; 
     const currentEventImgName = req.query.imgName;
+    console.log(req.query.imgName);
+    console.log(req.query.eventName);
+    console.log('a');
   
     try {
         const db = mongo_utils.get_client().db();

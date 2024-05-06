@@ -23,7 +23,7 @@ main {
 /* Give the background a little spice (credit to zhi)*/
 .container {
     margin: 20px;
-    padding-bottom: 30px;
+    padding: 30px;
     min-width: 50%;
     max-width: 95%;
     min-height: 50%;
@@ -73,7 +73,8 @@ main {
 }
 
 /* bg color for input */
-#name, #date, #description, #time {
+#name, #date, #description, #time, #type, #leader, #location, 
+#eName, #eDate, #eDescription, #eTime, #eType, #eLeader, #eLocation{
     background-color: #595959;
     color: white;
 }
